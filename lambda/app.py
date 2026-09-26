@@ -9,6 +9,9 @@ OBJECT_KEY = "portfolio_context.json"
 
 
 def lambda_handler(event, context):
+    body = json.loads(event.get("body", "{}"))
+    question = body.get("question", "")
+
     response = s3.get_object(
         Bucket=BUCKET_NAME,
         Key=OBJECT_KEY
@@ -23,5 +26,8 @@ def lambda_handler(event, context):
         "headers": {
             "Content-Type": "application/json"
         },
-        "body": json.dumps(portfolio_context)
+        "body": json.dumps({
+            "question": question,
+            "context_loaded": bool(portfolio_context)
+        })
     }
