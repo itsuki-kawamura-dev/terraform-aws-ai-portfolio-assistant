@@ -1,41 +1,27 @@
 import json
 import boto3
+import os
 
-bedrock = boto3.client("bedrock-runtime")
+s3 = boto3.client("s3")
 
-MODEL_ID = "amazon.nova-lite-v1:0"
+BUCKET_NAME = os.environ["PORTFOLIO_BUCKET"]
+OBJECT_KEY = "portfolio_context.json"
 
 
 def lambda_handler(event, context):
-    body = json.loads(event.get("body", "{}"))
-    question = body.get("question", "")
-
-    response = bedrock.converse(
-        modelId=MODEL_ID,
-        messages=[
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "text": question
-                    }
-                ]
-            }
-        ],
-        inferenceConfig={
-            "maxTokens": 300,
-            "temperature": 0.3
-        }
+    response = s3.get_object(
+        Bucket=BUCKET_NAME,
+        Key=OBJECT_KEY
     )
 
-    answer = response["output"]["message"]["content"][0]["text"]
+    portfolio_context = json.loads(
+        response["Body"].read().decode("utf-8")
+    )
 
     return {
         "statusCode": 200,
         "headers": {
             "Content-Type": "application/json"
         },
-        "body": json.dumps({
-            "answer": answer
-        })
+        "body": json.dumps(portfolio_context)
     }
