@@ -1,0 +1,482 @@
+{
+  "profile": {
+    "name": "Itsuki Kawamura",
+    "title": "Cloud Infrastructure Engineer",
+    "summary": "Cloud Infrastructure Engineer with around 6 years of experience across networking, AWS infrastructure, multi-cloud environments, technical support, infrastructure migration, configuration auditing, IaC and automation.",
+    "location": "Manchester, UK",
+    "career_direction": [
+      "Cloud Infrastructure",
+      "Infrastructure Automation",
+      "Terraform",
+      "CI/CD",
+      "Containers",
+      "DevOps",
+      "SRE"
+    ]
+  },
+
+  "core_skills": {
+    "cloud": [
+      "AWS",
+      "Azure",
+      "GCP"
+    ],
+    "aws": [
+      "VPC",
+      "EC2",
+      "S3",
+      "IAM",
+      "Transit Gateway",
+      "Direct Connect",
+      "VPN",
+      "CloudWatch",
+      "SNS",
+      "Systems Manager",
+      "Step Functions",
+      "EventBridge Scheduler",
+      "Lambda",
+      "API Gateway",
+      "CloudFront",
+      "AWS Organizations",
+      "Service Control Policies"
+    ],
+    "networking": [
+      "L2/L3 networking",
+      "BGP",
+      "VPN",
+      "Routing",
+      "Firewalls",
+      "Hybrid connectivity",
+      "Cisco",
+      "FortiGate",
+      "Palo Alto",
+      "Aruba"
+    ],
+    "iac_and_automation": [
+      "Terraform",
+      "CloudFormation",
+      "GitHub Actions",
+      "Ansible",
+      "AWS CLI"
+    ],
+    "containers": [
+      "Docker",
+      "Basic Kubernetes learning"
+    ],
+    "security_and_governance": [
+      "IAM",
+      "AWS Organizations",
+      "SCP",
+      "Private networking",
+      "Security Groups",
+      "OIDC",
+      "Least privilege design"
+    ]
+  },
+
+  "experience": [
+    {
+      "area": "Network Engineering",
+      "approximate_duration": "3.5 years",
+      "responsibilities": [
+        "Operated and troubleshot enterprise network infrastructure.",
+        "Worked with L2/L3 switches, routers, firewalls and VPN connectivity.",
+        "Worked with Cisco, FortiGate, Palo Alto, Aruba and other network devices.",
+        "Handled routing, BGP and infrastructure troubleshooting."
+      ]
+    },
+    {
+      "area": "AWS Infrastructure Migration",
+      "approximate_duration": "0.5 years",
+      "responsibilities": [
+        "Worked on an on-premises to AWS migration project.",
+        "Worked with VPC, EC2, Transit Gateway, Direct Connect and VPN connectivity.",
+        "Supported hybrid connectivity design and testing.",
+        "Created or worked with infrastructure design documents and test plans."
+      ],
+      "troubleshooting_example": {
+        "situation": "An initial connectivity test between on-premises infrastructure and AWS failed.",
+        "investigation": [
+          "Checked AWS routing.",
+          "Checked Security Groups.",
+          "Checked Transit Gateway and Direct Connect Gateway configuration.",
+          "Checked on-premises network devices.",
+          "Separated confirmed facts from assumptions during troubleshooting."
+        ],
+        "root_cause": "An incorrect BGP AS number.",
+        "result": "The configuration was corrected and connectivity was restored."
+      }
+    },
+    {
+      "area": "Cloud Infrastructure and Technical Support",
+      "approximate_duration": "1.75 years",
+      "responsibilities": [
+        "Worked across AWS, Azure and GCP environments.",
+        "Supported customer infrastructure issues and technical inquiries.",
+        "Performed cloud configuration audits.",
+        "Used Prisma Cloud and Lucidscale for infrastructure assessment and visualization.",
+        "Worked with multi-account AWS environments.",
+        "Worked with AWS Organizations, organizational units, IAM roles and Service Control Policies."
+      ]
+    }
+  ],
+
+  "strengths": [
+    {
+      "name": "Networking foundation",
+      "description": "Strong foundation in traditional networking and hybrid connectivity, including routing, BGP, VPN and firewalls."
+    },
+    {
+      "name": "Cloud infrastructure",
+      "description": "Hands-on AWS experience plus working knowledge of Azure and GCP."
+    },
+    {
+      "name": "Troubleshooting",
+      "description": "Experience investigating infrastructure and connectivity problems across both cloud and on-premises environments."
+    },
+    {
+      "name": "Infrastructure automation",
+      "description": "Actively expanding infrastructure experience into Terraform, GitHub Actions, Ansible and automated operations."
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "AWS Windows Maintenance Automation",
+      "repository": "terraform-aws-windows-maintenance-automation",
+      "category": [
+        "AWS",
+        "Operations Automation",
+        "Terraform",
+        "Windows"
+      ],
+      "summary": "Automated maintenance workflow for a private Windows Server EC2 instance using AWS managed services.",
+      "architecture": [
+        "Private Windows Server 2022 EC2",
+        "AWS Systems Manager",
+        "Step Functions",
+        "SSM Patch Manager",
+        "EBS snapshots",
+        "EventBridge Scheduler",
+        "Lambda",
+        "CloudWatch Logs",
+        "SNS"
+      ],
+      "implementation": [
+        "EC2 has no public IP.",
+        "Administrative access uses AWS Systems Manager instead of RDP from the Internet.",
+        "Step Functions orchestrates stop, snapshot, start, patching, reboot, health checks and notifications.",
+        "EventBridge Scheduler triggers monthly maintenance.",
+        "Lambda performs patch scanning and starts the maintenance workflow when missing patches are detected.",
+        "Infrastructure is deployed with Terraform.",
+        "GitHub Actions uses AWS OIDC for CI/CD.",
+        "A manual destroy workflow is included."
+      ],
+      "validation": [
+        "Successfully tested the normal maintenance workflow.",
+        "Tested failure handling by intentionally using an invalid Windows service name.",
+        "Confirmed failure notification through SNS.",
+        "Confirmed automatic EventBridge Scheduler to Step Functions execution."
+      ],
+      "demonstrates": [
+        "AWS operations automation",
+        "Failure handling",
+        "Serverless orchestration",
+        "Systems Manager",
+        "Terraform",
+        "GitHub Actions OIDC"
+      ]
+    },
+
+    {
+      "name": "Azure Private Infrastructure with Terraform",
+      "repository": "terraform-azure-private-vm",
+      "category": [
+        "Azure",
+        "Terraform",
+        "Identity",
+        "Private Networking"
+      ],
+      "summary": "Private Azure VM infrastructure demonstrating Terraform, Managed Identity and private access to Azure Storage.",
+      "architecture": [
+        "Azure VNet",
+        "Private Linux VM",
+        "Azure Storage",
+        "Private Endpoint",
+        "Private DNS",
+        "Managed Identity"
+      ],
+      "implementation": [
+        "The VM has no public IP.",
+        "Inbound SSH is disabled.",
+        "Password authentication is disabled.",
+        "Storage public network access is disabled.",
+        "Storage is accessed through a Private Endpoint.",
+        "Private DNS is configured with privatelink.blob.core.windows.net.",
+        "The VM uses a system-assigned Managed Identity.",
+        "The identity is granted Storage Blob Data Reader.",
+        "Terraform state is stored remotely in Azure Storage using Microsoft Entra authentication.",
+        "GitHub Actions uses OIDC authentication to Azure."
+      ],
+      "validation": [
+        "Confirmed that write access fails when the Managed Identity only has Storage Blob Data Reader.",
+        "Temporarily granted Contributor permissions for a write test.",
+        "Returned the identity to Reader permissions.",
+        "Confirmed successful read access afterward."
+      ],
+      "demonstrates": [
+        "Azure private networking",
+        "Managed Identity",
+        "RBAC",
+        "Terraform",
+        "OIDC",
+        "Positive and negative access testing"
+      ]
+    },
+
+    {
+      "name": "AWS Private Application Infrastructure",
+      "repository": "terraform-aws-ansible-docker-alb",
+      "category": [
+        "AWS",
+        "Terraform",
+        "Ansible",
+        "Docker"
+      ],
+      "summary": "Private EC2 application infrastructure deployed with Terraform and configured with Ansible through AWS Systems Manager.",
+      "architecture": [
+        "Internet-facing Application Load Balancer",
+        "Private EC2",
+        "Docker",
+        "nginx",
+        "AWS Systems Manager",
+        "NAT Gateway"
+      ],
+      "implementation": [
+        "EC2 has no public IP.",
+        "No inbound SSH is allowed.",
+        "The Application Load Balancer accepts Internet traffic.",
+        "The EC2 Security Group allows TCP 80 only from the ALB Security Group.",
+        "Ansible connects through amazon.aws.aws_ssm.",
+        "Docker and nginx are configured by Ansible.",
+        "Terraform provisions the AWS infrastructure.",
+        "GitHub Actions orchestrates Terraform and configuration automation."
+      ],
+      "validation": [
+        "Confirmed ALB target health.",
+        "Confirmed end-to-end Internet to ALB to private EC2 to Docker nginx connectivity."
+      ],
+      "demonstrates": [
+        "Private application architecture",
+        "Security Group referencing",
+        "No-SSH administration",
+        "Terraform",
+        "Ansible",
+        "Docker"
+      ]
+    },
+
+    {
+      "name": "AWS Terraform CI/CD with GitHub OIDC",
+      "repository": "terraform-aws-github-actions-oidc-ci",
+      "category": [
+        "AWS",
+        "Terraform",
+        "GitHub Actions",
+        "OIDC"
+      ],
+      "summary": "Terraform CI/CD pipeline using GitHub Actions and AWS OIDC without long-lived AWS access keys.",
+      "implementation": [
+        "GitHub Actions authenticates to AWS using OIDC.",
+        "Terraform runs format, initialization, validation, plan and apply stages.",
+        "Terraform state is stored remotely in S3.",
+        "S3 versioning is enabled for the state bucket.",
+        "Terraform S3 native state locking is used.",
+        "The AWS trust policy restricts GitHub OIDC subject claims."
+      ],
+      "lessons_learned": [
+        "GitHub-hosted runners are ephemeral, so local Terraform state cannot be relied on across workflow runs.",
+        "Remote Terraform state is required for repeatable CI/CD deployments.",
+        "Recent GitHub repositories may use immutable repository identifiers in OIDC subject claims."
+      ],
+      "demonstrates": [
+        "CI/CD",
+        "OIDC",
+        "Terraform remote state",
+        "IAM trust policies"
+      ]
+    },
+
+    {
+      "name": "AWS Private EC2 with Systems Manager",
+      "repository": "terraform-aws-private-ec2-ssm",
+      "category": [
+        "AWS",
+        "Terraform",
+        "Private Networking"
+      ],
+      "summary": "Private EC2 infrastructure managed through AWS Systems Manager without inbound administrative access.",
+      "implementation": [
+        "Private Amazon Linux EC2 instance.",
+        "No inbound Security Group rules.",
+        "Systems Manager VPC endpoints.",
+        "Encrypted gp3 storage.",
+        "IMDSv2 enabled.",
+        "IAM role using AmazonSSMManagedInstanceCore.",
+        "NAT Gateway can provide optional general Internet access."
+      ],
+      "demonstrates": [
+        "Private EC2 architecture",
+        "Systems Manager",
+        "VPC endpoints",
+        "Terraform"
+      ]
+    },
+
+    {
+      "name": "AWS CloudWatch Alarm and SNS",
+      "repository": "terraform-aws-cloudwatch-alarm-sns",
+      "category": [
+        "AWS",
+        "Monitoring",
+        "Terraform"
+      ],
+      "summary": "Infrastructure monitoring example using EC2 status checks, CloudWatch Alarms and SNS notifications.",
+      "implementation": [
+        "CloudWatch monitors EC2 StatusCheckFailed.",
+        "SNS delivers email notifications.",
+        "Infrastructure is provisioned with Terraform."
+      ],
+      "validation": [
+        "Used CloudWatch alarm state modification to validate the notification path.",
+        "The test validated CloudWatch to SNS notification behavior rather than a real EC2 infrastructure failure."
+      ],
+      "demonstrates": [
+        "CloudWatch",
+        "SNS",
+        "Monitoring",
+        "Terraform"
+      ]
+    },
+
+    {
+      "name": "AI Recruiter Portfolio Assistant",
+      "repository": "terraform-aws-bedrock-portfolio-assistant",
+      "category": [
+        "AWS",
+        "Serverless",
+        "AI",
+        "Terraform"
+      ],
+      "status": "In development",
+      "goal": "Provide recruiters with an interactive interface for asking questions about Itsuki's infrastructure experience and portfolio.",
+      "current_architecture": [
+        "API Gateway HTTP API",
+        "Lambda",
+        "S3 portfolio context",
+        "External or AWS-hosted LLM provider"
+      ],
+      "current_validation": [
+        "Confirmed external POST /ask requests reach API Gateway and invoke Lambda.",
+        "Confirmed JSON request bodies can be parsed by Lambda.",
+        "Confirmed Lambda can attempt Amazon Bedrock Converse API calls.",
+        "Bedrock testing encountered an account-level inference quota of zero and is being evaluated with an alternative LLM provider."
+      ],
+      "planned_architecture": [
+        "CloudFront",
+        "S3 static frontend",
+        "API Gateway",
+        "Lambda",
+        "Private S3 portfolio context",
+        "LLM API",
+        "Cost controls",
+        "Error handling"
+      ],
+      "demonstrates": [
+        "Serverless API design",
+        "API Gateway",
+        "Lambda",
+        "IAM",
+        "Terraform",
+        "External API integration",
+        "AI-assisted portfolio search"
+      ]
+    }
+  ],
+
+  "technical_examples": {
+    "hybrid_connectivity": {
+      "technologies": [
+        "AWS Transit Gateway",
+        "AWS Direct Connect",
+        "VPN",
+        "BGP"
+      ],
+      "experience": "Worked on connectivity between on-premises networks and AWS environments and troubleshot routing and BGP configuration."
+    },
+    "aws_governance": {
+      "technologies": [
+        "AWS Organizations",
+        "OU",
+        "SCP",
+        "IAM",
+        "CloudFormation StackSets"
+      ],
+      "experience": "Worked with multi-account AWS governance, including IAM role deployment and Service Control Policies."
+    },
+    "multi_cloud": {
+      "technologies": [
+        "AWS",
+        "Azure",
+        "GCP",
+        "Prisma Cloud",
+        "Lucidscale"
+      ],
+      "experience": "Performed configuration auditing and technical support across multiple cloud platforms."
+    }
+  },
+
+  "working_style": [
+    "Breaks large infrastructure problems into smaller components.",
+    "Separates confirmed facts from assumptions during troubleshooting.",
+    "Defines goals and acceptance criteria before implementing changes.",
+    "Provides short progress updates during incident investigation.",
+    "Learns unfamiliar technologies independently through documentation and hands-on testing."
+  ],
+
+  "career_focus": {
+    "existing_strength": "Networking and cloud infrastructure",
+    "current_expansion": [
+      "Infrastructure as Code",
+      "Terraform",
+      "CI/CD",
+      "Automation",
+      "Containers",
+      "DevOps practices",
+      "SRE practices"
+    ],
+    "positioning": "An infrastructure engineer expanding from networking and cloud infrastructure into automation and modern platform engineering practices."
+  },
+
+  "assistant_rules": {
+    "answer_scope": "Answer questions only from information contained in this portfolio context.",
+    "unsupported_information": "If the requested information is not present, clearly say that it is not available in the portfolio context.",
+    "hallucination_policy": "Do not invent employers, technologies, certifications, responsibilities, dates or project outcomes.",
+    "answer_style": "Give concise recruiter-friendly answers. Prefer concrete examples from projects or professional experience.",
+    "project_references": "When relevant, mention the project name that demonstrates the requested skill.",
+    "uncertainty": "Do not turn learning-level experience into production experience."
+  },
+
+  "example_questions": [
+    "What AWS experience does Itsuki have?",
+    "What networking experience does Itsuki have?",
+    "Which project best demonstrates infrastructure automation?",
+    "Does Itsuki have Terraform experience?",
+    "Does Itsuki have Azure experience?",
+    "What experience does Itsuki have with CI/CD?",
+    "Has Itsuki worked with hybrid cloud connectivity?",
+    "How does Itsuki approach infrastructure troubleshooting?",
+    "Which projects demonstrate security best practices?",
+    "What is Itsuki currently learning?"
+  ]
+}
