@@ -39,3 +39,24 @@ resource "aws_iam_role_policy" "lambda_bedrock" {
     ]
   })
 }
+
+resource "aws_iam_role_policy" "lambda_s3_read" {
+  name = "${var.project_name}-s3-read"
+  role = aws_iam_role.lambda.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+
+        Action = [
+          "s3:GetObject"
+        ]
+
+        Resource = "${aws_s3_bucket.portfolio_data.arn}/*"
+      }
+    ]
+  })
+}
