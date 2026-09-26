@@ -60,3 +60,21 @@ resource "aws_iam_role_policy" "lambda_s3_read" {
     ]
   })
 }
+
+resource "aws_iam_role_policy" "lambda_ssm_read" {
+  name = "${var.project_name}-ssm-read"
+  role = aws_iam_role.lambda.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "ssm:GetParameter"
+        ]
+        Resource = "arn:aws:ssm:${var.aws_region}:*:parameter/portfolio-assistant/gemini-api-key"
+      }
+    ]
+  })
+}
