@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Itsuki's Portfolio Assistant</title>
+</head>
+
+<body>
+  <h1>Ask Itsuki's Portfolio</h1>
+
+  <p>
+    Ask about cloud infrastructure, networking,
+    Terraform, automation, or projects.
+  </p>
+
+  <input
+    id="question"
+    type="text"
+    placeholder="Does Itsuki have Terraform experience?"
+    size="60"
+  >
+
+  <button onclick="askQuestion()">Ask</button>
+
+  <p id="status"></p>
+  <div id="answer"></div>
+
+  <script>
+    const API_ENDPOINT =
+      "https://6w61tsy5a9.execute-api.eu-west-2.amazonaws.com/ask";
+
+    async function askQuestion() {
+      const question =
+        document.getElementById("question").value.trim();
+
+      const status =
+        document.getElementById("status");
+
+      const answer =
+        document.getElementById("answer");
+
+      if (!question) {
+        status.textContent = "Please enter a question.";
+        return;
+      }
+
+      status.textContent = "Thinking...";
+      answer.textContent = "";
+
+      try {
+        const response = await fetch(API_ENDPOINT, {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            question: question
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error || "Request failed"
+          );
+        }
+
+        answer.textContent = data.answer;
+        status.textContent = "";
+
+      } catch (error) {
+        status.textContent =
+          "Sorry, the assistant is temporarily unavailable.";
+      }
+    }
+  </script>
+</body>
+</html>
