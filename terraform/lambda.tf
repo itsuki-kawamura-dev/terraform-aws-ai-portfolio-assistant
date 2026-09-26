@@ -20,6 +20,12 @@ resource "aws_lambda_function" "portfolio_assistant" {
   tags = {
     Project = var.project_name
   }
+
+  environment {
+    variables = {
+      PORTFOLIO_BUCKET = aws_s3_bucket.portfolio_data.bucket
+    }
+  }
 }
 
 resource "aws_lambda_permission" "api_gateway" {
@@ -29,10 +35,4 @@ resource "aws_lambda_permission" "api_gateway" {
   principal     = "apigateway.amazonaws.com"
 
   source_arn = "${aws_apigatewayv2_api.portfolio_api.execution_arn}/*/*"
-}
-
-environment {
-  variables = {
-    PORTFOLIO_BUCKET = aws_s3_bucket.portfolio_data.bucket
-  }
 }
