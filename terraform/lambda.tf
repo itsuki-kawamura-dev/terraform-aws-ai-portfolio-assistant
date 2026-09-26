@@ -30,3 +30,9 @@ resource "aws_lambda_permission" "api_gateway" {
 
   source_arn = "${aws_apigatewayv2_api.portfolio_api.execution_arn}/*/*"
 }
+
+environment {
+  variables = {
+    PORTFOLIO_BUCKET = aws_s3_bucket.portfolio_data.bucket
+  }
+}
