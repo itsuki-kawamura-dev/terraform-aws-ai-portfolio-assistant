@@ -2,144 +2,49 @@
   "profile": {
     "name": "Itsuki Kawamura",
     "title": "Cloud Infrastructure Engineer",
-    "summary": "Cloud Infrastructure Engineer with around 5+ years of experience across networking, AWS infrastructure, multi-cloud environments, technical support, infrastructure migration, configuration auditing, IaC and automation.",
+    "summary": "Cloud Infrastructure Engineer with hands-on AWS migration and server build experience, followed by large-scale multi-cloud audit, governance and operations across AWS, Azure and Google Cloud. Has authored CloudFormation templates and a VBA reporting automation in professional work. A networking and hybrid connectivity foundation helps diagnose cloud connectivity; Terraform and CI/CD project work extends this cloud infrastructure base.",
     "location": "Manchester, UK",
     "career_direction": [
-      "Cloud Infrastructure",
-      "Infrastructure Automation",
-      "Terraform",
-      "CI/CD",
-      "Containers",
-      "DevOps",
-      "SRE"
-    ]
-  },
-
-  "core_skills": {
-    "cloud": [
-      "AWS",
-      "Azure",
-      "GCP"
+      "Cloud Infrastructure Engineer",
+      "Cloud Operations Engineer",
+      "Infrastructure Engineer with a cloud focus",
+      "Platform or DevOps role grounded in infrastructure and automation",
+      "Cloud Network Engineer where the work is cloud-platform focused"
     ],
-    "aws": [
-      "VPC",
-      "EC2",
-      "S3",
-      "IAM",
-      "Transit Gateway",
-      "Direct Connect",
-      "VPN",
-      "CloudWatch",
-      "SNS",
-      "Systems Manager",
-      "Step Functions",
-      "EventBridge Scheduler",
-      "Lambda",
-      "API Gateway",
-      "CloudFront",
-      "AWS Organizations",
-      "Service Control Policies"
-    ],
-    "networking": [
-      "L2/L3 networking",
-      "BGP",
-      "VPN",
-      "Routing",
-      "Firewalls",
-      "Hybrid connectivity",
-      "Cisco",
-      "FortiGate",
-      "Palo Alto",
-      "Aruba"
-    ],
-    "iac_and_automation": [
-      "Terraform",
-      "CloudFormation",
-      "GitHub Actions",
-      "Ansible",
-      "AWS CLI"
-    ],
-    "containers": [
-      "Docker",
-      "Basic Kubernetes learning"
-    ],
-    "security_and_governance": [
-      "IAM",
-      "AWS Organizations",
-      "SCP",
-      "Private networking",
-      "Security Groups",
-      "OIDC",
-      "Least privilege design"
-    ]
-  },
-
-  "experience": [
-    {
-      "area": "Network Engineering",
-      "approximate_duration": "3.5 years",
-      "responsibilities": [
-        "Operated and troubleshot enterprise network infrastructure.",
-        "Worked with L2/L3 switches, routers, firewalls and VPN connectivity.",
-        "Worked with Cisco, FortiGate, Palo Alto, Aruba and other network devices.",
-        "Handled routing, BGP and infrastructure troubleshooting."
-      ]
-    },
-    {
-      "area": "AWS Infrastructure Migration",
-      "approximate_duration": "0.5 years",
-      "responsibilities": [
-        "Worked on an on-premises to AWS migration project.",
-        "Worked with VPC, EC2, Transit Gateway, Direct Connect and VPN connectivity.",
-        "Supported hybrid connectivity design and testing.",
-        "Created or worked with infrastructure design documents and test plans."
-      ],
-      "troubleshooting_example": {
-        "situation": "An initial connectivity test between on-premises infrastructure and AWS failed.",
-        "investigation": [
-          "Checked AWS routing.",
-          "Checked Security Groups.",
-          "Checked Transit Gateway and Direct Connect Gateway configuration.",
-          "Checked on-premises network devices.",
-          "Separated confirmed facts from assumptions during troubleshooting."
-        ],
-        "root_cause": "An incorrect BGP AS number.",
-        "result": "The configuration was corrected and connectivity was restored."
+    "certifications": [
+      {
+        "name": "AWS Solutions Architect – Associate (SAA) exam",
+        "status": "Passed"
+      },
+      {
+        "name": "基本情報技術者試験 (Fundamental Information Technology Engineer Examination)",
+        "status": "Passed"
+      },
+      {
+        "name": "応用情報技術者試験 (Applied Information Technology Engineer Examination)",
+        "status": "Passed"
       }
-    },
-    {
-      "area": "Cloud Infrastructure and Technical Support",
-      "approximate_duration": "1.75 years",
-      "responsibilities": [
-        "Worked across AWS, Azure and GCP environments.",
-        "Supported customer infrastructure issues and technical inquiries.",
-        "Performed cloud configuration audits.",
-        "Used Prisma Cloud and Lucidscale for infrastructure assessment and visualization.",
-        "Worked with multi-account AWS environments.",
-        "Worked with AWS Organizations, organizational units, IAM roles and Service Control Policies."
-      ]
-    }
-  ],
-
+    ],
+    "role_preference": "Seeks cloud-focused, remote-friendly work. On-premises network engineering is a valuable foundation, but primarily onsite network-device operations are not the intended career direction. No fixed remote-only or onsite-days requirement is stated."
+  },
   "strengths": [
     {
-      "name": "Networking foundation",
-      "description": "Strong foundation in traditional networking and hybrid connectivity, including routing, BGP, VPN and firewalls."
+      "name": "Cloud infrastructure and AWS migration",
+      "description": "Built AWS environments and application/database servers, worked on hybrid migration design within assigned scope, and authored foundational CloudFormation templates."
     },
     {
-      "name": "Cloud infrastructure",
-      "description": "Hands-on AWS experience plus working knowledge of Azure and GCP."
+      "name": "Multi-cloud operations and governance",
+      "description": "Operated Prisma Cloud onboarding and findings triage at large audit-estate scale; investigated access and policy issues across AWS, Azure and Google Cloud."
     },
     {
-      "name": "Troubleshooting",
-      "description": "Experience investigating infrastructure and connectivity problems across both cloud and on-premises environments."
+      "name": "Network and hybrid connectivity depth",
+      "description": "L2/L3 switching, firewalls, BGP, VPN, Direct Connect and Transit Gateway experience supports cloud connectivity design and troubleshooting."
     },
     {
-      "name": "Infrastructure automation",
-      "description": "Actively expanding infrastructure experience into Terraform, GitHub Actions, Ansible and automated operations."
+      "name": "Practical automation",
+      "description": "Built an Excel VBA monthly reporting workflow, authored CloudFormation, made targeted fixes to vendor-generated onboarding Terraform, and built independent Terraform/CI/CD portfolio projects."
     }
   ],
-
   "projects": [
     {
       "name": "AWS Windows Maintenance Automation",
@@ -185,9 +90,10 @@
         "Systems Manager",
         "Terraform",
         "GitHub Actions OIDC"
-      ]
+      ],
+      "experience_type": "personal_portfolio_project",
+      "details_as_of": "2026-09-27 portfolio context; check the repository before claiming current state"
     },
-
     {
       "name": "Azure Private Infrastructure with Terraform",
       "repository": "terraform-azure-private-vm",
@@ -231,9 +137,10 @@
         "Terraform",
         "OIDC",
         "Positive and negative access testing"
-      ]
+      ],
+      "experience_type": "personal_portfolio_project",
+      "details_as_of": "2026-09-27 portfolio context; check the repository before claiming current state"
     },
-
     {
       "name": "AWS Private Application Infrastructure",
       "repository": "terraform-aws-ansible-docker-alb",
@@ -273,9 +180,10 @@
         "Terraform",
         "Ansible",
         "Docker"
-      ]
+      ],
+      "experience_type": "personal_portfolio_project",
+      "details_as_of": "2026-09-27 portfolio context; check the repository before claiming current state"
     },
-
     {
       "name": "AWS Terraform CI/CD with GitHub OIDC",
       "repository": "terraform-aws-github-actions-oidc-ci",
@@ -304,9 +212,10 @@
         "OIDC",
         "Terraform remote state",
         "IAM trust policies"
-      ]
+      ],
+      "experience_type": "personal_portfolio_project",
+      "details_as_of": "2026-09-27 portfolio context; check the repository before claiming current state"
     },
-
     {
       "name": "AWS Private EC2 with Systems Manager",
       "repository": "terraform-aws-private-ec2-ssm",
@@ -330,9 +239,10 @@
         "Systems Manager",
         "VPC endpoints",
         "Terraform"
-      ]
+      ],
+      "experience_type": "personal_portfolio_project",
+      "details_as_of": "2026-09-27 portfolio context; check the repository before claiming current state"
     },
-
     {
       "name": "AWS CloudWatch Alarm and SNS",
       "repository": "terraform-aws-cloudwatch-alarm-sns",
@@ -356,9 +266,10 @@
         "SNS",
         "Monitoring",
         "Terraform"
-      ]
+      ],
+      "experience_type": "personal_portfolio_project",
+      "details_as_of": "2026-09-27 portfolio context; check the repository before claiming current state"
     },
-
     {
       "name": "AI Recruiter Portfolio Assistant",
       "repository": "terraform-aws-bedrock-portfolio-assistant",
@@ -368,23 +279,21 @@
         "AI",
         "Terraform"
       ],
-      "status": "In development",
+      "status": "In development as of 2026-09-27",
       "goal": "Provide recruiters with an interactive interface for asking questions about Itsuki's infrastructure experience and portfolio.",
       "current_architecture": [
         "API Gateway HTTP API",
         "Lambda",
-        "S3 portfolio context",
-        "External or AWS-hosted LLM provider"
+        "Private S3 portfolio_context.json",
+        "Gemini API via a key stored in Systems Manager Parameter Store"
       ],
       "current_validation": [
-        "Confirmed external POST /ask requests reach API Gateway and invoke Lambda.",
-        "Confirmed JSON request bodies can be parsed by Lambda.",
-        "Confirmed Lambda can attempt Amazon Bedrock Converse API calls.",
-        "Bedrock testing encountered an account-level inference quota of zero and is being evaluated with an alternative LLM provider."
+        "Previous API Gateway POST /ask and Lambda request parsing were tested.",
+        "Bedrock encountered a zero inference quota during earlier testing; the available app.py now calls Gemini.",
+        "Live end-to-end Gemini response validation is not established in this context."
       ],
       "planned_architecture": [
-        "CloudFront",
-        "S3 static frontend",
+        "Static frontend",
         "API Gateway",
         "Lambda",
         "Private S3 portfolio context",
@@ -400,10 +309,11 @@
         "Terraform",
         "External API integration",
         "AI-assisted portfolio search"
-      ]
+      ],
+      "experience_type": "personal_portfolio_project",
+      "details_as_of": "2026-09-27 portfolio context; check the repository before claiming current state"
     }
   ],
-
   "technical_examples": {
     "hybrid_connectivity": {
       "technologies": [
@@ -422,7 +332,7 @@
         "IAM",
         "CloudFormation StackSets"
       ],
-      "experience": "Worked with multi-account AWS governance, including IAM role deployment and Service Control Policies."
+      "experience": "Operated onboarding for many AWS accounts within an existing OU/SCP governance model. Moving accounts to the audit OU allowed an existing OU-targeted StackSet to distribute the Prisma Cloud IAM role. Investigated customer actions blocked by pre-existing SCPs; did not design those policies or the StackSet."
     },
     "multi_cloud": {
       "technologies": [
@@ -435,7 +345,6 @@
       "experience": "Performed configuration auditing and technical support across multiple cloud platforms."
     }
   },
-
   "working_style": [
     "Breaks large infrastructure problems into smaller components.",
     "Separates confirmed facts from assumptions during troubleshooting.",
@@ -443,9 +352,8 @@
     "Provides short progress updates during incident investigation.",
     "Learns unfamiliar technologies independently through documentation and hands-on testing."
   ],
-
   "career_focus": {
-    "existing_strength": "Networking and cloud infrastructure",
+    "existing_strength": "AWS cloud infrastructure and multi-cloud operations, reinforced by network and hybrid connectivity depth",
     "current_expansion": [
       "Infrastructure as Code",
       "Terraform",
@@ -455,18 +363,16 @@
       "DevOps practices",
       "SRE practices"
     ],
-    "positioning": "An infrastructure engineer expanding from networking and cloud infrastructure into automation and modern platform engineering practices."
+    "positioning": "Lead with cloud infrastructure and multi-cloud operations. Use networking and hybrid AWS migration as evidence of technical depth, and distinguish professional CloudFormation/VBA/vendor-Terraform work from independent Terraform and CI/CD projects."
   },
-
   "assistant_rules": {
     "answer_scope": "Answer questions only from information contained in this portfolio context.",
     "unsupported_information": "If the requested information is not present, clearly say that it is not available in the portfolio context.",
     "hallucination_policy": "Do not invent employers, technologies, certifications, responsibilities, dates or project outcomes.",
     "answer_style": "Give concise recruiter-friendly answers. Prefer concrete examples from projects or professional experience.",
-    "project_references": "When relevant, mention the project name that demonstrates the requested skill.",
-    "uncertainty": "Do not turn learning-level experience into production experience."
+    "project_references": "When relevant, mention a named personal project, clearly label it as a personal portfolio project, and cite only the implementation and validation recorded here.",
+    "uncertainty": "Separate professional experience, personal projects and learning. Preserve each project validation limitation and do not infer production use from portfolio demonstrations."
   },
-
   "example_questions": [
     "What AWS experience does Itsuki have?",
     "What networking experience does Itsuki have?",
@@ -478,5 +384,321 @@
     "How does Itsuki approach infrastructure troubleshooting?",
     "Which projects demonstrate security best practices?",
     "What is Itsuki currently learning?"
-  ]
+  ],
+  "schema_version": "2.0",
+  "updated_at": "2026-09-27",
+  "purpose": "Recruiter-facing context. Professional history and personal portfolio projects have different evidence levels. The current Lambda reads this JSON from S3; it does not fetch repository READMEs.",
+  "professional_experience": [
+    {
+      "organization": "Kintetsu Information Systems",
+      "role": "Network / Infrastructure Engineer",
+      "period": "2020-04 to 2023-07 (the general infrastructure assignment is also recorded as starting 2020-07 in another sheet)",
+      "responsibilities": [
+        "Configured and maintained L2/L3 switches and firewalls; introduced new VLANs using comparable existing configurations as a reference.",
+        "Implemented network settings for new systems and validated connectivity. A senior engineer owned the overall architecture design.",
+        "Operated shared monitoring, proxy, mail, directory services and VMware-based infrastructure, including changes, updates and incidents."
+      ],
+      "technologies": [
+        "Cisco and Yamaha L2/L3 switches",
+        "FortiGate",
+        "VLANs and routing",
+        "Zabbix",
+        "Squid",
+        "Active Directory",
+        "VMware",
+        "Windows Server",
+        "RHEL, CentOS and Ubuntu",
+        "FTP, SMTP, Syslog and SNMP"
+      ],
+      "assignments": [
+        {
+          "name": "On-premises to AWS system migration",
+          "period": "2022-01 to 2023-03",
+          "contribution": [
+            "Used existing migrated environments as references to design and configure the Transit Gateway and route-table settings for subsequent systems, then validated connectivity.",
+            "Set up a test VLAN and validated failover from the two primary Direct Connect links to a backup path through a Virtual Private Gateway (VGW), measuring switching time and reporting the result to a manager before production introduction.",
+            "Worked on network configuration, construction and troubleshooting across on-premises and AWS environments. A senior engineer owned the overall architecture design.",
+            "Configured SNMP notification paths during firewall updates in line with the existing Zabbix or JP1 monitoring arrangement. Investigated device MIB files and loaded them on the Zabbix server to interpret numeric OIDs and notification contents."
+          ],
+          "technologies": [
+            "VPC",
+            "Route Tables",
+            "Security Groups",
+            "Transit Gateway",
+            "Direct Connect and Direct Connect Gateway",
+            "VPN",
+            "VPC Peering",
+            "BGP",
+            "Zabbix",
+            "Virtual Private Gateway (VGW)",
+            "SNMP",
+            "MIB/OID",
+            "JP1"
+          ],
+          "design_scope": "Adapted existing designs for assigned systems and owned configuration and testing within that scope; did not originate the entire migration architecture.",
+          "backup_path_note": "The candidate recalls a Site-to-Site VPN backup via VGW, but the exact connection type should be verified before making a specific public claim."
+        },
+        {
+          "name": "Business website replacement infrastructure and OS upgrade preparation",
+          "period": "2022-12 to 2023-07",
+          "contribution": [
+            "Investigated a poorly documented existing website environment and inventoried packages and configuration needed to plan a new OS/server build.",
+            "Reviewed likely compatibility considerations for the target RHEL 8 environment and prepared the infrastructure test plan; application-specific remediation belonged to the application team.",
+            "Provisioned the new server infrastructure and handed it to the application team for migration and application validation."
+          ],
+          "technologies": [
+            "RHEL 8",
+            "Apache",
+            "php-fpm",
+            "PostgreSQL",
+            "EC2",
+            "ALB",
+            "CloudFront",
+            "AWS WAF",
+            "EFS",
+            "DataSync",
+            "IAM",
+            "Lambda",
+            "CloudFormation"
+          ],
+          "outcome_limit": "The candidate left the company after the new servers were handed over. They did not perform the later infrastructure test after application migration and do not know the final production cutover result."
+        }
+      ],
+      "automation_and_operations": [
+        "Authored CloudFormation templates from scratch for stable network and front-door resources (VPC, Route Tables, Security Groups, ALB and CloudFront) during early IaC adoption, and used AWS CLI in infrastructure operations.",
+        "Used SNS and Lambda for simple operational notifications and maintenance mechanisms.",
+        "Configured Zabbix monitoring with Teams notifications.",
+        "Created or modified small shell and Python maintenance scripts; does not claim professional software development experience."
+      ],
+      "cloudformation_scope": {
+        "context": "IaC adoption was at an early stage and the operational approach had not yet been standardized.",
+        "personal_contribution": "Authored CloudFormation templates from scratch for relatively stable foundational AWS infrastructure, then used them in professional work.",
+        "resources": [
+          "VPC",
+          "Route Tables",
+          "Security Groups",
+          "Application Load Balancer",
+          "CloudFront"
+        ],
+        "boundary": "EC2 and other compute resources were not part of the candidate-authored CloudFormation templates described here. Their appearance elsewhere in the work history does not imply CloudFormation management."
+      }
+    },
+    {
+      "organization": "CAC project (contract assignment)",
+      "role": "AWS Migration / Infrastructure Engineer",
+      "period": "2023-10 to 2024-03/04 (end month differs between sheets)",
+      "project": "Migration and build of a core accounting system on AWS",
+      "contribution": [
+        "Personally configured and built EC2, VPC, Security Groups, AWS Client VPN and Simple AD for the migration assignment.",
+        "Personally provisioned and configured approximately 20 application and database servers across five environments, set up base middleware settings, created reusable AMIs, adjusted environment-specific IP and application/database settings after launch, checked connectivity and handed them to the application team.",
+        "Worked on basic/detailed design and validation, and prepared design documents, procedures and test items.",
+        "Reviewed AWS specifications and configuration values, identified points requiring correction and helped guide a newer team member.",
+        "Investigated a failed initial on-premises to AWS connectivity test by comparing on-premises and network-provider design documents; identified and reported a BGP AS-number discrepancy, after which the responsible party corrected it and connectivity succeeded."
+      ],
+      "technologies": [
+        "AWS VPC, Transit Gateway, EC2, Direct Connect, IAM, Client VPN and Simple AD",
+        "Windows and Amazon Linux",
+        "Oracle Database, IIS, Subversion, Resin and intra-mart",
+        "Security Groups"
+      ],
+      "troubleshooting_example": {
+        "situation": "At a company migrating from on-premises infrastructure to AWS for the first time, the initial connectivity test failed and the candidate was asked to investigate.",
+        "investigation": "Requested and compared the on-premises and network-provider design documents; identified a mismatch in the BGP AS number.",
+        "action": "Reported the discrepancy to the responsible parties. The candidate did not have access to change the provider-managed equipment.",
+        "outcome": "The AS-number issue was corrected by the responsible party and connectivity worked.",
+        "ownership": "The candidate identified and reported the mismatch; do not claim they changed provider configuration or owned the overall migration design."
+      },
+      "build_scope_note": "Approximately 20 servers across five environments were personally provisioned and configured by the candidate, not merely a team-wide server count. Exact breakdown by environment and server role is not recorded.",
+      "build_workflow": [
+        "Prepared basic and detailed design and configured base application/database server settings.",
+        "Created AMIs from the base configuration and launched servers from them across the five environments.",
+        "Adjusted environment-specific IP and application/database settings after launch, performed initial connectivity checks, and handed the servers to the application team."
+      ],
+      "middleware_documented_in_skill_sheets": [
+        "Oracle Database",
+        "IIS",
+        "Subversion",
+        "Resin",
+        "intra-mart"
+      ],
+      "middleware_scope_note": "These products are listed for the assignment in the supplied skill sheets. The candidate states that they built the server contents and initial middleware configuration; do not imply every product was installed on every one of the approximately 20 servers."
+    },
+    {
+      "organization": "Client cloud operations assignment (client name not specified)",
+      "role": "Multi-cloud Operations / Cloud Security Posture Engineer",
+      "period": "2024-09 to 2026-06 (as recorded in the latest skill sheet)",
+      "contribution": [
+        "Onboarded AWS, Azure and Google Cloud environments into Prisma Cloud. Used an audit-target AWS OU, tenant-level Azure deployment and organization-level Google Cloud deployment where applicable, with individual exceptions handled separately.",
+        "Validated vendor-generated Terraform onboarding code, reviewed the resources and access it would create, wrote customer-friendly instructions from official guidance, and had customers execute the deployment in their own environments.",
+        "Investigated customer execution errors using emailed logs or screenshots and provided remediation instructions. Updated provider version settings in vendor-generated Terraform when older versions caused execution failures, then distributed the corrected material.",
+        "Extracted the custom-role permissions from the Azure onboarding Terraform, prepared a JSON custom-role definition, and gave it to customers to assign to the application in the required onboarding flow.",
+        "Reviewed changes to Prisma Cloud onboarding scripts and addressed permission gaps in previously onboarded environments.",
+        "Investigated security findings, checked alert content and triggers, and advised remediation. Detection policies had already been standardized by others; this was not policy ownership.",
+        "Gathered requirements from service teams and performed cloud configuration and access changes under a policy of limiting direct administrator access; also handled backup and restore operations."
+      ],
+      "technologies": [
+        "Prisma Cloud",
+        "AWS",
+        "Azure",
+        "Google Cloud",
+        "Windows Server",
+        "Amazon Linux",
+        "Terraform (vendor-generated onboarding code; targeted edits)",
+        "IAM / cloud access onboarding"
+      ],
+      "scope_note": "This is cloud posture and infrastructure operations experience; it should not be presented as dedicated SOC or SIEM incident response. The additional AWS governance and Lucidscale items were documented in the previous portfolio context, but are not detailed in the nine skill sheets.",
+      "additional_context_from_prior_portfolio": [
+        "Worked within an established AWS Organizations OU/SCP and CloudFormation StackSets governance model. The candidate operated account placement and investigated policy-related support issues; did not author the existing SCPs.",
+        "Used Lucidscale for infrastructure visualization and configuration assessment.",
+        "Handled technical inquiries and customer-facing support."
+      ],
+      "terraform_scope": "Professional use consisted of testing, reviewing, troubleshooting and making targeted corrections to Prisma Cloud vendor-generated Terraform used for customer onboarding. This included provider-version fixes and extracting Azure custom-role permissions into a JSON definition. Customers normally executed or applied the onboarding steps in their own environments. Independently building full Terraform modules and CI/CD pipelines is demonstrated through personal projects, not this assignment.",
+      "alert_triage_examples": [
+        "Investigated password-policy findings, such as minimum length and password reuse restrictions. When a customer reported that an alert persisted after a change, checked the actual setting and explained that the finding still applied.",
+        "Investigated onboarding access errors to determine whether Prisma Cloud could see the expected environment and whether the application had the required permissions; warned when necessary permissions had been removed.",
+        "For network findings such as use of a default VPC or overly broad internet routing, checked the affected resource and cited its resource ID when explaining why a reported fix had not resolved the finding."
+      ],
+      "aws_governance_scope": {
+        "operating_model": "Large numbers of AWS accounts were governed through an established audit-target OU and pre-existing SCPs. Moving an account into the OU brought it under those controls; an existing OU-targeted CloudFormation StackSet distributed the Prisma Cloud integration IAM role.",
+        "personal_contribution": [
+          "Moved applicable accounts into the audit OU as part of onboarding.",
+          "Investigated customer reports of blocked actions and identified when an existing SCP caused the restriction.",
+          "Handled exceptions for accounts that could not be placed in the standard OU."
+        ],
+        "ownership_limit": "The SCP policies and StackSet deployment mechanism already existed when the candidate joined the team. Do not claim that the candidate designed or authored the SCPs, StackSet template or policy standard."
+      },
+      "environment_scale": {
+        "aws": "Thousands of accounts across the audit environment",
+        "azure": "Hundreds of Azure environments in scope (candidate estimate)",
+        "google_cloud": "Dozens of Google Cloud environments in scope (candidate estimate)",
+        "scope_note": "These are approximate total audit-estate figures, not a claim that the candidate individually onboarded every account."
+      },
+      "prisma_onboarding_verification": [
+        "After moving an AWS account into the applicable OU, checked that the OU-targeted StackSet deployed successfully.",
+        "Confirmed that Prisma Cloud recognized the account, then applied account, user and default alert settings.",
+        "Investigated failures and arranged a later retry when needed."
+      ],
+      "reporting_and_automation": {
+        "cadence": "Monthly",
+        "inputs": [
+          "Prisma Cloud export of alert/remediation status",
+          "Cloud account inventory/register"
+        ],
+        "output": "Approximately 20 separate group-company reports each month, generated through to file output by the candidate-authored Excel VBA macro.",
+        "personal_contribution": "Built the VBA macro to import Prisma Cloud alert-status exports and the account register, reconcile and aggregate the data, and generate the company-specific monthly report files.",
+        "observed_effort": "Approximately 1–2 person-days including review and checks after automation.",
+        "baseline_note": "The candidate estimates that a fully manual process might take 1–2 weeks, but this was not a measured before/after baseline; do not quote a percentage or guaranteed time saving."
+      }
+    }
+  ],
+  "skills_by_context": {
+    "professional_core": {
+      "network_and_hybrid": [
+        "L2/L3 switching",
+        "firewalls",
+        "VLANs",
+        "routing",
+        "BGP",
+        "VPN",
+        "AWS VPC",
+        "Transit Gateway",
+        "Direct Connect",
+        "Direct Connect Gateway"
+      ],
+      "aws_infrastructure": [
+        "EC2",
+        "IAM",
+        "Route Tables",
+        "Security Groups",
+        "CloudFront",
+        "AWS WAF",
+        "ALB",
+        "EFS",
+        "DataSync",
+        "Lambda",
+        "SNS",
+        "CloudFormation",
+        "AWS CLI"
+      ],
+      "operations_and_security": [
+        "Prisma Cloud onboarding and findings investigation",
+        "multi-cloud configuration review",
+        "access and permissions operations",
+        "monitoring",
+        "backup and restore",
+        "technical support and stakeholder communication"
+      ],
+      "systems": [
+        "Linux",
+        "Windows Server",
+        "VMware",
+        "Apache",
+        "PostgreSQL",
+        "Oracle Database",
+        "Zabbix"
+      ],
+      "scripting": [
+        "small shell and Python maintenance scripts"
+      ],
+      "iac_and_automation": [
+        "Self-authored CloudFormation templates for VPC, Route Tables, Security Groups, ALB and CloudFront; AWS CLI infrastructure operations",
+        "Prisma Cloud vendor-generated Terraform onboarding: execution testing, targeted provider-version corrections, documentation and troubleshooting",
+        "small shell and Python maintenance scripts",
+        "Excel VBA macro for monthly cloud audit reporting and data reconciliation"
+      ]
+    },
+    "personal_projects_or_learning": [
+      "Independently built Terraform infrastructure projects",
+      "GitHub Actions and CI/CD projects",
+      "Ansible and Docker in a personal project",
+      "Kubernetes learning"
+    ]
+  },
+  "answering_rules": [
+    "Separate professional experience from personal portfolio projects and current learning.",
+    "Describe the limited professional Terraform scope accurately: vendor-generated Prisma Cloud onboarding code was reviewed, tested and sometimes corrected; do not present this as authoring end-to-end production Terraform infrastructure. GitHub Actions, Ansible and Docker are evidenced by personal projects; Kubernetes remains learning.",
+    "Do not claim ownership of the entire AWS migration architecture: a senior engineer designed the overall architecture. The candidate adapted existing patterns, designed and configured routing for assigned systems, and tested backup connectivity.",
+    "Do not turn exposure to a named service into a claim of deep expertise in that service.",
+    "Project dates below overlap because some assignments ran alongside wider operations work; do not add their durations together as if they were sequential.",
+    "If a recruiter asks for an unrecorded metric, certification, project detail, or exact responsibility, say the information is not available rather than guessing.",
+    "A repository README can support a project claim only when its actual content has been retrieved and provided to the assistant.",
+    "Treat all entries in projects as personal portfolio projects, not employment. Respect each project status and validation notes.",
+    "AWS Organizations, OU, SCP, IAM role deployment and Lucidscale are described in the earlier portfolio context; avoid giving project-level ownership details beyond those recorded there.",
+    "Do not claim the candidate designed or authored AWS SCPs or the Prisma Cloud IAM-role StackSet. Those controls predated their involvement; their contribution was OU placement, exception handling and policy-related troubleshooting.",
+    "When describing the scale of the audit estate, distinguish the thousands/hundreds/dozens of environments in scope from the subset personally onboarded or handled.",
+    "The incorrect BGP AS-number troubleshooting episode belongs to the CAC AWS migration assignment, not the earlier Kintetsu migration.",
+    "For the CAC AS-number incident, the candidate compared design documents and reported the discrepancy; they did not change provider-managed equipment.",
+    "CloudFormation professional ownership covers candidate-authored VPC, Route Tables, Security Groups, ALB and CloudFront templates. Do not infer that EC2 or other compute in the same project was managed with those templates.",
+    "For the website OS upgrade project, do not claim completed production migration, application validation or final infrastructure testing. The candidate delivered new servers and a test plan, then left before subsequent stages.",
+    "For AWS SAA, state only that the candidate passed the exam. Do not describe it as a currently active certification or make claims about current validity.",
+    "For broad recruiter questions about strengths or fit, lead with cloud infrastructure, AWS migration and multi-cloud operations. Explain network experience as a differentiator for cloud connectivity, not the candidate’s desired primary on-premises role.",
+    "The candidate prefers remote-friendly cloud-focused roles, but has not specified a remote-only requirement or a precise onsite schedule. Do not invent one."
+  ],
+  "recruiter_faq": [
+    {
+      "question": "Is Itsuki only a network engineer?",
+      "answer": "No. The career target is cloud infrastructure and operations. Itsuki built AWS environments and servers, authored CloudFormation templates, and later worked in large-scale multi-cloud audit and governance. Earlier L2/L3 and hybrid network work adds depth for cloud connectivity and troubleshooting."
+    },
+    {
+      "question": "Has Itsuki used Terraform in production?",
+      "answer": "Yes, in a bounded support and onboarding role: reviewed and tested Prisma Cloud-generated Terraform for customer cloud integration, corrected provider version settings when needed, prepared instructions, and troubleshot customer execution. Customers normally ran it. Independently authored Terraform infrastructure and CI/CD work is shown in personal portfolio projects, not claimed as equivalent production ownership."
+    },
+    {
+      "question": "Is Itsuki a DevOps or Kubernetes specialist?",
+      "answer": "The professional base is infrastructure, networking and cloud operations. CI/CD, containers and Kubernetes are areas of development; specialist production experience is not established here."
+    },
+    {
+      "question": "What kind of security experience does Itsuki have?",
+      "answer": "Cloud posture and governance operations across AWS, Azure and Google Cloud: Prisma Cloud onboarding, permission troubleshooting, and alert investigation. Examples include password-policy findings, missing application access, default VPCs and overly broad routing. The candidate checked the actual resource and cited resource IDs when explaining unresolved findings. Dedicated SOC or SIEM response is not claimed."
+    },
+    {
+      "question": "Has Itsuki automated a professional workflow?",
+      "answer": "Yes. The candidate built an Excel VBA macro that reconciled Prisma Cloud alert-status exports with an account register and generated approximately 20 company-specific monthly reports. The process took about 1–2 person-days including checks. The pre-automation time was not measured, so no quantified saving is claimed."
+    },
+    {
+      "question": "What is Itsuki’s main professional strength?",
+      "answer": "Cloud infrastructure delivery and operations, supported by practical hybrid networking depth. Examples include AWS migration and server builds, self-authored CloudFormation, and multi-cloud governance and Prisma Cloud operations. Terraform/CI/CD projects show the next direction without being presented as equivalent production ownership."
+    }
+  ],
+  "project_content_policy": "Project summaries below are personal work. The available app.py reads only this JSON, so it cannot rely on current GitHub README content until the application explicitly retrieves and supplies it."
 }
