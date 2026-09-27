@@ -323,8 +323,11 @@ function addMessage(role, text) {
     /*
       Generated assistant output is sanitized before rendering.
     */
+     const html =
+    marked.parse(text);
+
     bubble.innerHTML =
-      DOMPurify.sanitize(text);
+      DOMPurify.sanitize(html);
 
   } else {
 
