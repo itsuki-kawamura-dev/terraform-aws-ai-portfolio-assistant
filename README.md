@@ -2,7 +2,7 @@
 
 A recruiter-facing AI portfolio assistant that answers questions about my cloud infrastructure experience, technical skills, and hands-on projects.
 
-The application is hosted on AWS and provisioned with Terraform. Portfolio data is stored privately in Amazon S3, the frontend is delivered through CloudFront, and an API Gateway + Lambda backend sends grounded prompts to the Gemini API.
+The application is hosted on AWS and provisioned with Terraform. The frontend is delivered through CloudFront from a private S3 origin, API Gateway and Lambda handle recruiter questions, portfolio data is loaded from private S3, and Gemini generates grounded responses from curated portfolio context and synchronized GitHub project READMEs.
 
 ## Architecture
 
@@ -14,10 +14,14 @@ flowchart TD
     D --> E[AWS Lambda]
 
     E --> F[Private S3<br/>portfolio_context.json]
-    E --> G[SSM Parameter Store<br/>Gemini API Key]
-    E --> H[Gemini API]
+    E --> G[Private S3<br/>projects/*.md]
+    E --> H[SSM Parameter Store<br/>Gemini API Key]
+    E --> I[Gemini API]
 
-    H --> E
+    J[GitHub Project READMEs] --> K[GitHub Actions<br/>README Sync]
+    K --> G
+
+    I --> E
     E --> D
     D --> A
 ```
@@ -32,23 +36,80 @@ flowchart TD
 - **Secret management** with SSM Parameter Store
 - **LLM integration** through the Gemini REST API
 - **Context-grounded answers** to reduce unsupported or invented claims
+- **Project-aware context selection** so relevant README content is loaded only when useful
+- **Automatic GitHub README synchronization** into the portfolio knowledge source
+- **Direct links to relevant GitHub projects** in AI responses
 - **GitHub Actions + AWS OIDC** for Terraform deployment without long-lived AWS access keys
-- **API throttling and budget alerts** as cost-abuse guardrails
+- **API throttling and AWS Budget alerts** as cost-abuse guardrails
 - **Markdown rendering with sanitization** for safer AI-generated output
 
 ## Request Flow
 
-1. A user opens the portfolio assistant through CloudFront.
+1. A recruiter opens the portfolio assistant through CloudFront.
 2. CloudFront serves `frontend/index.html` from a private S3 bucket.
 3. The browser sends a `POST /ask` request to API Gateway.
 4. API Gateway invokes Lambda.
-5. Lambda:
-   - validates the question,
-   - loads `portfolio_context.json` from private S3,
-   - retrieves the Gemini API key from SSM Parameter Store,
-   - builds a grounded prompt,
-   - calls the Gemini API.
-6. The answer is returned to the browser and rendered as sanitized Markdown.
+5. Lambda validates the question and loads the general portfolio context from `portfolio_context.json`.
+6. Lambda performs lightweight keyword-based project selection and loads up to two relevant project README files from S3.
+7. Lambda retrieves the Gemini API key from SSM Parameter Store.
+8. The general context, selected project context, and recruiter question are sent to Gemini.
+9. Gemini returns a concise answer in the same language as the question and, when relevant, includes a Markdown link to the associated GitHub repository.
+10. The frontend renders the response as sanitized Markdown.
+
+## Project Knowledge Synchronization
+
+Project READMEs are synchronized from GitHub into private S3 by a dedicated GitHub Actions workflow.
+
+The workflow currently syncs these repositories:
+
+```text
+terraform-aws-private-ec2-ssm
+terraform-aws-cloudwatch-alarm-sns
+terraform-aws-github-actions-oidc-ci
+terraform-aws-ansible-docker-alb
+terraform-azure-private-vm
+terraform-aws-windows-maintenance-automation
+terraform-aws-ai-portfolio-assistant
+```
+
+The synchronized S3 structure is:
+
+```text
+portfolio-assistant-data/
+├── portfolio_context.json
+└── projects/
+    ├── terraform-aws-private-ec2-ssm.md
+    ├── terraform-aws-cloudwatch-alarm-sns.md
+    ├── terraform-aws-github-actions-oidc-ci.md
+    ├── terraform-aws-ansible-docker-alb.md
+    ├── terraform-azure-private-vm.md
+    ├── terraform-aws-windows-maintenance-automation.md
+    └── terraform-aws-ai-portfolio-assistant.md
+```
+
+Each synchronized file includes the source repository URL before the README content. The prompt instructs the model to use only repository URLs provided in the retrieved context, so relevant answers can link directly to the source project without inventing URLs.
+
+## Lightweight Project Routing
+
+The current implementation intentionally avoids a vector database or full RAG stack.
+
+For the current portfolio size, Lambda performs lightweight keyword scoring against the recruiter question and selects at most two project READMEs:
+
+```text
+Recruiter question
+        ↓
+Keyword scoring
+        ↓
+Select up to 2 relevant projects
+        ↓
+Load matching README files from S3
+        ↓
+General portfolio context + project context
+        ↓
+Gemini
+```
+
+This keeps the architecture simple and reduces unnecessary LLM input compared with sending every project README on every request.
 
 ## Security and Cost Guardrails
 
@@ -56,23 +117,30 @@ flowchart TD
 
 The frontend S3 bucket blocks public access. CloudFront accesses the bucket through **Origin Access Control (OAC)**.
 
-### Private portfolio data
+### Private portfolio knowledge
 
-`portfolio_context.json` is stored in a separate private S3 bucket. Lambda receives only `s3:GetObject` access to the portfolio data.
+`portfolio_context.json` and synchronized project READMEs are stored in a separate private S3 bucket. Lambda receives `s3:GetObject` access to the portfolio data.
 
 ### API key management
 
-The Gemini API key is not stored in source code. Lambda retrieves it from SSM Parameter Store at runtime.
+The Gemini API key is not stored in application source code. Lambda retrieves it from SSM Parameter Store at runtime.
 
 ### Input and output limits
 
-The backend limits recruiter questions to **500 characters**.
+Recruiter questions are limited to **500 characters** in both the frontend and backend.
 
 Gemini generation is also limited:
 
 ```text
 maxOutputTokens = 300
 temperature     = 0.2
+```
+
+Project context is also bounded:
+
+```text
+Maximum selected projects : 2
+Maximum README characters : 12,000 per selected project
 ```
 
 ### API throttling
@@ -103,7 +171,9 @@ Examples include:
 
 ### AWS Budget
 
-Terraform also provisions a monthly AWS Budget as an additional cost-monitoring guardrail.
+Terraform provisions a monthly AWS Budget with notifications as an additional cost-monitoring guardrail.
+
+The notification email is provided to Terraform through a GitHub Actions secret via `TF_VAR_budget_notification_email` rather than being committed to the repository.
 
 ## Frontend
 
@@ -117,6 +187,7 @@ It includes:
 - a 500-character browser-side input limit,
 - Markdown rendering with `marked`,
 - HTML sanitization with `DOMPurify`,
+- clickable links to relevant GitHub projects,
 - friendly handling for API throttling.
 
 Example questions:
@@ -124,9 +195,11 @@ Example questions:
 ```text
 What AWS experience does Itsuki have?
 
-Does Itsuki have Terraform experience?
+How did Itsuki use Azure Private Endpoint?
 
-Which project best demonstrates automation?
+Which project demonstrates Windows automation?
+
+Does Itsuki have CloudWatch monitoring experience?
 ```
 
 ## Validation
@@ -137,20 +210,23 @@ The following paths were tested during development:
 |---|---|
 | Browser → CloudFront → S3 frontend | Passed |
 | Browser → API Gateway → Lambda | Passed |
-| Lambda → private S3 context | Passed |
+| Lambda → private S3 portfolio context | Passed |
+| Lambda → synchronized project README context | Passed |
 | Lambda → SSM Parameter Store | Passed |
 | Lambda → Gemini API | Passed |
 | English recruiter question | Passed |
 | Japanese recruiter question | Passed |
+| Project-aware README selection | Passed |
+| GitHub project link returned in AI answer | Passed |
 | Markdown rendering | Passed |
 | Concurrent API throttling test | `429 Too Many Requests` observed |
 | Gemini rate-limit handling | Controlled `503` response observed |
 | Terraform deployment through GitHub Actions | Passed |
-
+| Scheduled/manual project README synchronization | Passed |
 
 ## CI/CD
 
-Deployment is handled by a manually triggered GitHub Actions workflow.
+Terraform deployment is handled by a manually triggered GitHub Actions workflow.
 
 ```text
 workflow_dispatch
@@ -172,6 +248,22 @@ terraform apply
 
 A separate manual workflow is included for Terraform destroy operations.
 
+Project README synchronization runs through a separate workflow:
+
+```text
+workflow_dispatch or daily schedule
+      ↓
+GitHub OIDC
+      ↓
+AWS IAM Role
+      ↓
+Fetch public project READMEs
+      ↓
+Add repository metadata
+      ↓
+Upload to private S3 projects/
+```
+
 ## Repository Structure
 
 ```text
@@ -179,7 +271,8 @@ A separate manual workflow is included for Terraform destroy operations.
 ├── .github/
 │   └── workflows/
 │       ├── main.yml
-│       └── destroy.yml
+│       ├── destroy.yml
+│       └── sync-project-readmes.yml
 │
 ├── data/
 │   └── portfolio_context.json
@@ -218,7 +311,9 @@ terraform output portfolio_url
 Before deployment, the following values must exist outside the repository:
 
 - an AWS IAM role that GitHub Actions can assume through OIDC,
-- the GitHub Actions `IAM_ROLE_ARN` configuration,
+- GitHub Actions secret `IAM_ROLE_ARN`,
+- GitHub Actions secret `YOUR_EMAIL_ADDRESS` for the AWS Budget notification,
+- GitHub Actions variable `PORTFOLIO_BUCKET` for project README synchronization,
 - an existing S3 bucket for Terraform remote state,
 - an SSM SecureString parameter:
 
@@ -226,25 +321,26 @@ Before deployment, the following values must exist outside the repository:
 /portfolio-assistant/gemini-api-key
 ```
 
-The API key itself is never committed to the repository.
+The Gemini API key and budget notification email are not committed to the repository.
 
 ## Design Note
 
 The project originally explored Amazon Bedrock for the LLM layer. During implementation, account-level Bedrock inference quotas prevented model invocation, so the application was adapted to use the Gemini API while retaining the AWS serverless architecture.
 
-This keeps the LLM provider replaceable while allowing the rest of the AWS infrastructure, security controls, and deployment workflow to remain unchanged.
+The application is therefore structured so the LLM provider can be changed without redesigning the frontend, API Gateway, S3 knowledge source, or deployment workflow.
 
-## Future Improvements
+The project also deliberately uses lightweight keyword-based project routing instead of introducing a vector database before the portfolio size requires one.
 
-Planned improvements include:
+## Possible Future Improvements
 
-- automatically synchronizing GitHub project README files into the portfolio knowledge source,
-- linking AI answers directly to relevant GitHub projects,
-- retrieving only the most relevant project context as the knowledge base grows,
-- improving the frontend UI,
-- adding additional observability and request metrics,
-- reintroducing Amazon Bedrock as an alternative provider if account inference access becomes available.
+The current implementation is considered a complete MVP. Potential future improvements include:
+
+- replace keyword routing with semantic retrieval if the knowledge base grows,
+- add request metrics and dashboards,
+- add stronger abuse protection if the public endpoint receives meaningful traffic,
+- improve frontend styling and mobile presentation,
+- reintroduce Amazon Bedrock as an alternative LLM provider if account inference access becomes available.
 
 ---
 
-Built as a hands-on cloud infrastructure project using **AWS, Terraform, GitHub Actions, Python, and an external LLM API**.
+Built as a hands-on cloud infrastructure project using **AWS, Terraform, GitHub Actions, Python, S3, CloudFront, API Gateway, Lambda, and an external LLM API**.
