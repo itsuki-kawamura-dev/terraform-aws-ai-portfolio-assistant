@@ -10,7 +10,7 @@ resource "aws_budgets_budget" "portfolio_monthly" {
     threshold                  = 60
     threshold_type             = "PERCENTAGE"
     notification_type          = "ACTUAL"
-    subscriber_email_addresses = ["YOUR_EMAIL@example.com"]
+    subscriber_email_addresses = [var.budget_notification_email]
   }
 
   notification {
@@ -18,6 +18,6 @@ resource "aws_budgets_budget" "portfolio_monthly" {
     threshold                  = 100
     threshold_type             = "PERCENTAGE"
     notification_type          = "ACTUAL"
-    subscriber_email_addresses = ["YOUR_EMAIL@example.com"]
+    subscriber_email_addresses = [var.budget_notification_email]
   }
 }
