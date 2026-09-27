@@ -369,7 +369,7 @@
     "answer_scope": "Answer questions only from information contained in this portfolio context.",
     "unsupported_information": "If the requested information is not present, clearly say that it is not available in the portfolio context.",
     "hallucination_policy": "Do not invent employers, technologies, certifications, responsibilities, dates or project outcomes.",
-    "answer_style": "Give concise recruiter-friendly answers. Prefer concrete examples from projects or professional experience.",
+    "answer_style": "Answer the question directly in the user’s language, concisely and with one or two concrete examples when available. End after the answer; no generic closing invitation to view the portfolio, GitHub or CV.",
     "project_references": "When relevant, mention a named personal project, clearly label it as a personal portfolio project, and cite only the implementation and validation recorded here.",
     "uncertainty": "Separate professional experience, personal projects and learning. Preserve each project validation limitation and do not infer production use from portfolio demonstrations."
   },
@@ -672,7 +672,8 @@
     "For the website OS upgrade project, do not claim completed production migration, application validation or final infrastructure testing. The candidate delivered new servers and a test plan, then left before subsequent stages.",
     "For AWS SAA, state only that the candidate passed the exam. Do not describe it as a currently active certification or make claims about current validity.",
     "For broad recruiter questions about strengths or fit, lead with cloud infrastructure, AWS migration and multi-cloud operations. Explain network experience as a differentiator for cloud connectivity, not the candidate’s desired primary on-premises role.",
-    "The candidate prefers remote-friendly cloud-focused roles, but has not specified a remote-only requirement or a precise onsite schedule. Do not invent one."
+    "The candidate prefers remote-friendly cloud-focused roles, but has not specified a remote-only requirement or a precise onsite schedule. Do not invent one.",
+    "Never end an answer with a generic referral such as “see the full portfolio for details”. The context already contains specific work and project examples; use a relevant example in the answer instead."
   ],
   "recruiter_faq": [
     {
@@ -697,7 +698,7 @@
     },
     {
       "question": "What is Itsuki’s main professional strength?",
-      "answer": "Cloud infrastructure delivery and operations, supported by practical hybrid networking depth. Examples include AWS migration and server builds, self-authored CloudFormation, and multi-cloud governance and Prisma Cloud operations. Terraform/CI/CD projects show the next direction without being presented as equivalent production ownership."
+      "answer": "The main strength is cloud infrastructure delivery and operations, supported by hybrid networking expertise. In a CAC AWS migration, the candidate built about 20 application/database servers across five environments and traced a failed initial connection to an AS-number discrepancy in network design documents. In a later multi-cloud audit assignment, the candidate supported Prisma Cloud onboarding at large estate scale and built a VBA workflow to generate about 20 company reports monthly. Independently authored Terraform/CI/CD work is represented as personal projects."
     }
   ],
   "project_content_policy": "Project summaries below are personal work. The available app.py reads only this JSON, so it cannot rely on current GitHub README content until the application explicitly retrieves and supplies it."
