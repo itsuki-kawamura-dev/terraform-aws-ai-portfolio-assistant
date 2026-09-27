@@ -14,6 +14,7 @@ GEMINI_MODEL = "gemini-3.5-flash-lite"
 GEMINI_API_KEY_PARAMETER = "/portfolio-assistant/gemini-api-key"
 
 MAX_QUESTION_LENGTH = 500
+MAX_ANSWER_TOKENS = 1200
 
 
 def build_response(status_code, body):
@@ -108,7 +109,7 @@ RECRUITER QUESTION:
                 }
             ],
             "generationConfig": {
-                "maxOutputTokens": 300,
+                "maxOutputTokens": MAX_ANSWER_TOKENS,
                 "temperature": 0.2
             }
         }

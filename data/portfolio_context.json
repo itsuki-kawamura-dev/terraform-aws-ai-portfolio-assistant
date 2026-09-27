@@ -2,7 +2,7 @@
   "profile": {
     "name": "Itsuki Kawamura",
     "title": "Cloud Infrastructure Engineer",
-    "summary": "Cloud Infrastructure Engineer with hands-on AWS migration and server build experience, followed by large-scale multi-cloud audit, governance and operations across AWS, Azure and Google Cloud. Has authored CloudFormation templates and a VBA reporting automation in professional work. A networking and hybrid connectivity foundation helps diagnose cloud connectivity; Terraform and CI/CD project work extends this cloud infrastructure base.",
+    "summary": "Cloud Infrastructure Engineer with hands-on AWS migration and server build experience, followed by cloud infrastructure technical support and large-scale multi-cloud audit, governance and operations at Kyndryl across AWS, Azure and Google Cloud. Has authored CloudFormation templates and a VBA reporting automation in professional work. A networking and hybrid connectivity foundation helps diagnose cloud connectivity; Terraform and CI/CD project work extends this cloud infrastructure base.",
     "location": "Manchester, UK",
     "career_direction": [
       "Cloud Infrastructure Engineer",
@@ -34,7 +34,7 @@
     },
     {
       "name": "Multi-cloud operations and governance",
-      "description": "Operated Prisma Cloud onboarding and findings triage at large audit-estate scale; investigated access and policy issues across AWS, Azure and Google Cloud."
+      "description": "Handled cloud infrastructure technical inquiries and Prisma Cloud onboarding and findings triage at large audit-estate scale; investigated access and policy issues across AWS, Azure and Google Cloud."
     },
     {
       "name": "Network and hybrid connectivity depth",
@@ -342,7 +342,7 @@
         "Prisma Cloud",
         "Lucidscale"
       ],
-      "experience": "Performed configuration auditing and technical support across multiple cloud platforms."
+      "experience": "Handled cloud infrastructure technical inquiries as well as Prisma Cloud onboarding, configuration audit and operational troubleshooting across AWS, Azure and GCP."
     }
   },
   "working_style": [
@@ -371,7 +371,8 @@
     "hallucination_policy": "Do not invent employers, technologies, certifications, responsibilities, dates or project outcomes.",
     "answer_style": "Answer the question directly in the user’s language, concisely and with one or two concrete examples when available. End after the answer; no generic closing invitation to view the portfolio, GitHub or CV.",
     "project_references": "When relevant, mention a named personal project, clearly label it as a personal portfolio project, and cite only the implementation and validation recorded here.",
-    "uncertainty": "Separate professional experience, personal projects and learning. Preserve each project validation limitation and do not infer production use from portfolio demonstrations."
+    "uncertainty": "Separate professional experience, personal projects and learning. Preserve each project validation limitation and do not infer production use from portfolio demonstrations.",
+    "career_history_order": "When listing professional experience, present it in reverse chronological order: Kyndryl, CAC, then Kintetsu Information Systems."
   },
   "example_questions": [
     "What AWS experience does Itsuki have?",
@@ -389,6 +390,138 @@
   "updated_at": "2026-09-27",
   "purpose": "Recruiter-facing context. Professional history and personal portfolio projects have different evidence levels. The current Lambda reads this JSON from S3; it does not fetch repository READMEs.",
   "professional_experience": [
+    {
+      "organization": "Kyndryl (client assignment; employment relationship not specified)",
+      "role": "Cloud Infrastructure Operations / Technical Support / Cloud Security Posture Engineer",
+      "period": "2024-09 to 2026-06 (as recorded in the latest skill sheet)",
+      "contribution": [
+        "Provided technical inquiry handling and standardized cloud-environment enablement for service teams under strict enterprise governance, in addition to Prisma Cloud audit onboarding, findings and reporting.",
+        "Onboarded AWS, Azure and Google Cloud environments into Prisma Cloud. Used an audit-target AWS OU, tenant-level Azure deployment and organization-level Google Cloud deployment where applicable, with individual exceptions handled separately.",
+        "Validated vendor-generated Terraform onboarding code, reviewed the resources and access it would create, wrote customer-friendly instructions from official guidance, and had customers execute the deployment in their own environments.",
+        "Investigated customer execution errors using emailed logs or screenshots and provided remediation instructions. Updated provider version settings in vendor-generated Terraform when older versions caused execution failures, then distributed the corrected material.",
+        "Extracted the custom-role permissions from the Azure onboarding Terraform, prepared a JSON custom-role definition, and gave it to customers to assign to the application in the required onboarding flow.",
+        "Reviewed changes to Prisma Cloud onboarding scripts and addressed permission gaps in previously onboarded environments.",
+        "Investigated security findings, checked alert content and triggers, and advised remediation. Detection policies had already been standardized by others; this was not policy ownership.",
+        "Gathered requirements from service teams and performed cloud configuration and access changes under a policy of limiting direct administrator access; also handled backup and restore operations."
+      ],
+      "technologies": [
+        "Prisma Cloud",
+        "AWS",
+        "Azure",
+        "Google Cloud",
+        "Windows Server",
+        "Amazon Linux",
+        "Terraform (vendor-generated onboarding code; targeted edits)",
+        "IAM / cloud access onboarding"
+      ],
+      "scope_note": "This is cloud posture and infrastructure operations experience; it should not be presented as dedicated SOC or SIEM incident response. The additional AWS governance and Lucidscale items were documented in the previous portfolio context, but are not detailed in the nine skill sheets.",
+      "additional_context_from_prior_portfolio": [
+        "Worked within an established AWS Organizations OU/SCP and CloudFormation StackSets governance model. The candidate operated account placement and investigated policy-related support issues; did not author the existing SCPs.",
+        "Used Lucidscale for infrastructure visualization and configuration assessment.",
+        "Handled technical inquiries and customer-facing support."
+      ],
+      "terraform_scope": "Professional use consisted of testing, reviewing, troubleshooting and making targeted corrections to Prisma Cloud vendor-generated Terraform used for customer onboarding. This included provider-version fixes and extracting Azure custom-role permissions into a JSON definition. Customers normally executed or applied the onboarding steps in their own environments. Independently building full Terraform modules and CI/CD pipelines is demonstrated through personal projects, not this assignment.",
+      "alert_triage_examples": [
+        "Investigated password-policy findings, such as minimum length and password reuse restrictions. When a customer reported that an alert persisted after a change, checked the actual setting and explained that the finding still applied.",
+        "Investigated onboarding access errors to determine whether Prisma Cloud could see the expected environment and whether the application had the required permissions; warned when necessary permissions had been removed.",
+        "For network findings such as use of a default VPC or overly broad internet routing, checked the affected resource and cited its resource ID when explaining why a reported fix had not resolved the finding."
+      ],
+      "aws_governance_scope": {
+        "operating_model": "Large numbers of AWS accounts were governed through an established audit-target OU and pre-existing SCPs. Moving an account into the OU brought it under those controls; an existing OU-targeted CloudFormation StackSet distributed the Prisma Cloud integration IAM role.",
+        "personal_contribution": [
+          "Moved applicable accounts into the audit OU as part of onboarding.",
+          "Investigated customer reports of blocked actions and identified when an existing SCP caused the restriction.",
+          "Handled exceptions for accounts that could not be placed in the standard OU."
+        ],
+        "ownership_limit": "The SCP policies and StackSet deployment mechanism already existed when the candidate joined the team. Do not claim that the candidate designed or authored the SCPs, StackSet template or policy standard."
+      },
+      "environment_scale": {
+        "aws": "Thousands of accounts across the audit environment",
+        "azure": "Hundreds of Azure environments in scope (candidate estimate)",
+        "google_cloud": "Dozens of Google Cloud environments in scope (candidate estimate)",
+        "scope_note": "These are approximate total audit-estate figures, not a claim that the candidate individually onboarded every account."
+      },
+      "prisma_onboarding_verification": [
+        "After moving an AWS account into the applicable OU, checked that the OU-targeted StackSet deployed successfully.",
+        "Confirmed that Prisma Cloud recognized the account, then applied account, user and default alert settings.",
+        "Investigated failures and arranged a later retry when needed."
+      ],
+      "reporting_and_automation": {
+        "cadence": "Monthly",
+        "inputs": [
+          "Prisma Cloud export of alert/remediation status",
+          "Cloud account inventory/register"
+        ],
+        "output": "Approximately 20 separate group-company reports each month, generated through to file output by the candidate-authored Excel VBA macro.",
+        "personal_contribution": "Built the VBA macro to import Prisma Cloud alert-status exports and the account register, reconcile and aggregate the data, and generate the company-specific monthly report files.",
+        "observed_effort": "Approximately 1–2 person-days including review and checks after automation.",
+        "baseline_note": "The candidate estimates that a fully manual process might take 1–2 weeks, but this was not a measured before/after baseline; do not quote a percentage or guaranteed time saving."
+      },
+      "technical_support_scope": {
+        "operating_model": "At a very large enterprise with strict centralized security and cloud governance, the infrastructure team provided standardized AWS/Azure/GCP environments and ongoing operations to internal service teams. Customers could use only approved services and configurations; server creation and network changes often required the central team rather than direct customer administration.",
+        "responsibilities": [
+          "Handled technical inquiries beyond Prisma Cloud audit work: clarified customer goals and implementation methods, checked what the standard platform and security rules allowed, and advised on workable configurations.",
+          "Provided or changed cloud infrastructure settings on behalf of service teams when authorized, including server, network and access-related requests.",
+          "Coordinated required workflows and approvals before touching customer environments; requests could not always be handled immediately or exactly as initially proposed.",
+          "Provided procedures for customer-owned application/server settings that the infrastructure team was not authorized to change.",
+          "Supported system changes and scheduled server restores, including AMI/snapshot preparation, post-restore IP impacts and notification to the security monitoring team."
+        ],
+        "example": "A customer wanted to send email from a private server but initially did not specify whether the application would call an API or use SMTP. After the candidate learned it used SMTP, they revised the network guidance for Amazon SES SMTP connectivity, explained sending-identity verification and identified server-side settings the customer had to make. Internal delivery was reported to work; do not claim a confirmed root cause or resolution for external delivery.",
+        "boundary": "This is cloud infrastructure technical support and standardized platform operations, not dedicated SOC/SIEM response. Ticket counts are candidate estimates, not formal SLA figures.",
+        "work_allocation": "Routine ticket requests such as standard Security Group changes were handled by a separate standard-operations team. The candidate handled non-standard changes, connectivity failures and lighter troubleshooting that did not fit a fixed procedure.",
+        "personal_ticket_volume": {
+          "assigned": "Approximately 60 non-standard/technical-support tickets per month personally assigned (candidate estimate)",
+          "closed_within_month": "Typically closed approximately 40–50 tickets per month",
+          "carried_forward": "Roughly 10 tickets carried into later work each month; backlog could accumulate",
+          "boundary": "Approximate personal workload, not the total team ticket volume or a formal SLA result."
+        },
+        "restore_coordination_example": [
+          "Scheduled server restore work around the application team’s update window and coordinated the necessary workflow and approvals.",
+          "Created AMIs or snapshots around the change and restored the server as needed.",
+          "Accounted for IP changes after restore and notified the security team so its security application monitored the correct server target."
+        ]
+      }
+    },
+    {
+      "organization": "CAC project (contract assignment)",
+      "role": "AWS Migration / Infrastructure Engineer",
+      "period": "2023-10 to 2024-03/04 (end month differs between sheets)",
+      "project": "Migration and build of a core accounting system on AWS",
+      "contribution": [
+        "Personally configured and built EC2, VPC, Security Groups, AWS Client VPN and Simple AD for the migration assignment.",
+        "Personally provisioned and configured approximately 20 application and database servers across five environments, set up base middleware settings, created reusable AMIs, adjusted environment-specific IP and application/database settings after launch, checked connectivity and handed them to the application team.",
+        "Worked on basic/detailed design and validation, and prepared design documents, procedures and test items.",
+        "Reviewed AWS specifications and configuration values, identified points requiring correction and helped guide a newer team member.",
+        "Investigated a failed initial on-premises to AWS connectivity test by comparing on-premises and network-provider design documents; identified and reported a BGP AS-number discrepancy, after which the responsible party corrected it and connectivity succeeded."
+      ],
+      "technologies": [
+        "AWS VPC, Transit Gateway, EC2, Direct Connect, IAM, Client VPN and Simple AD",
+        "Windows and Amazon Linux",
+        "Oracle Database, IIS, Subversion, Resin and intra-mart",
+        "Security Groups"
+      ],
+      "troubleshooting_example": {
+        "situation": "At a company migrating from on-premises infrastructure to AWS for the first time, the initial connectivity test failed and the candidate was asked to investigate.",
+        "investigation": "Requested and compared the on-premises and network-provider design documents; identified a mismatch in the BGP AS number.",
+        "action": "Reported the discrepancy to the responsible parties. The candidate did not have access to change the provider-managed equipment.",
+        "outcome": "The AS-number issue was corrected by the responsible party and connectivity worked.",
+        "ownership": "The candidate identified and reported the mismatch; do not claim they changed provider configuration or owned the overall migration design."
+      },
+      "build_scope_note": "Approximately 20 servers across five environments were personally provisioned and configured by the candidate, not merely a team-wide server count. Exact breakdown by environment and server role is not recorded.",
+      "build_workflow": [
+        "Prepared basic and detailed design and configured base application/database server settings.",
+        "Created AMIs from the base configuration and launched servers from them across the five environments.",
+        "Adjusted environment-specific IP and application/database settings after launch, performed initial connectivity checks, and handed the servers to the application team."
+      ],
+      "middleware_documented_in_skill_sheets": [
+        "Oracle Database",
+        "IIS",
+        "Subversion",
+        "Resin",
+        "intra-mart"
+      ],
+      "middleware_scope_note": "These products are listed for the assignment in the supplied skill sheets. The candidate states that they built the server contents and initial middleware configuration; do not imply every product was installed on every one of the approximately 20 servers."
+    },
     {
       "organization": "Kintetsu Information Systems",
       "role": "Network / Infrastructure Engineer",
@@ -482,113 +615,6 @@
         ],
         "boundary": "EC2 and other compute resources were not part of the candidate-authored CloudFormation templates described here. Their appearance elsewhere in the work history does not imply CloudFormation management."
       }
-    },
-    {
-      "organization": "CAC project (contract assignment)",
-      "role": "AWS Migration / Infrastructure Engineer",
-      "period": "2023-10 to 2024-03/04 (end month differs between sheets)",
-      "project": "Migration and build of a core accounting system on AWS",
-      "contribution": [
-        "Personally configured and built EC2, VPC, Security Groups, AWS Client VPN and Simple AD for the migration assignment.",
-        "Personally provisioned and configured approximately 20 application and database servers across five environments, set up base middleware settings, created reusable AMIs, adjusted environment-specific IP and application/database settings after launch, checked connectivity and handed them to the application team.",
-        "Worked on basic/detailed design and validation, and prepared design documents, procedures and test items.",
-        "Reviewed AWS specifications and configuration values, identified points requiring correction and helped guide a newer team member.",
-        "Investigated a failed initial on-premises to AWS connectivity test by comparing on-premises and network-provider design documents; identified and reported a BGP AS-number discrepancy, after which the responsible party corrected it and connectivity succeeded."
-      ],
-      "technologies": [
-        "AWS VPC, Transit Gateway, EC2, Direct Connect, IAM, Client VPN and Simple AD",
-        "Windows and Amazon Linux",
-        "Oracle Database, IIS, Subversion, Resin and intra-mart",
-        "Security Groups"
-      ],
-      "troubleshooting_example": {
-        "situation": "At a company migrating from on-premises infrastructure to AWS for the first time, the initial connectivity test failed and the candidate was asked to investigate.",
-        "investigation": "Requested and compared the on-premises and network-provider design documents; identified a mismatch in the BGP AS number.",
-        "action": "Reported the discrepancy to the responsible parties. The candidate did not have access to change the provider-managed equipment.",
-        "outcome": "The AS-number issue was corrected by the responsible party and connectivity worked.",
-        "ownership": "The candidate identified and reported the mismatch; do not claim they changed provider configuration or owned the overall migration design."
-      },
-      "build_scope_note": "Approximately 20 servers across five environments were personally provisioned and configured by the candidate, not merely a team-wide server count. Exact breakdown by environment and server role is not recorded.",
-      "build_workflow": [
-        "Prepared basic and detailed design and configured base application/database server settings.",
-        "Created AMIs from the base configuration and launched servers from them across the five environments.",
-        "Adjusted environment-specific IP and application/database settings after launch, performed initial connectivity checks, and handed the servers to the application team."
-      ],
-      "middleware_documented_in_skill_sheets": [
-        "Oracle Database",
-        "IIS",
-        "Subversion",
-        "Resin",
-        "intra-mart"
-      ],
-      "middleware_scope_note": "These products are listed for the assignment in the supplied skill sheets. The candidate states that they built the server contents and initial middleware configuration; do not imply every product was installed on every one of the approximately 20 servers."
-    },
-    {
-      "organization": "Client cloud operations assignment (client name not specified)",
-      "role": "Multi-cloud Operations / Cloud Security Posture Engineer",
-      "period": "2024-09 to 2026-06 (as recorded in the latest skill sheet)",
-      "contribution": [
-        "Onboarded AWS, Azure and Google Cloud environments into Prisma Cloud. Used an audit-target AWS OU, tenant-level Azure deployment and organization-level Google Cloud deployment where applicable, with individual exceptions handled separately.",
-        "Validated vendor-generated Terraform onboarding code, reviewed the resources and access it would create, wrote customer-friendly instructions from official guidance, and had customers execute the deployment in their own environments.",
-        "Investigated customer execution errors using emailed logs or screenshots and provided remediation instructions. Updated provider version settings in vendor-generated Terraform when older versions caused execution failures, then distributed the corrected material.",
-        "Extracted the custom-role permissions from the Azure onboarding Terraform, prepared a JSON custom-role definition, and gave it to customers to assign to the application in the required onboarding flow.",
-        "Reviewed changes to Prisma Cloud onboarding scripts and addressed permission gaps in previously onboarded environments.",
-        "Investigated security findings, checked alert content and triggers, and advised remediation. Detection policies had already been standardized by others; this was not policy ownership.",
-        "Gathered requirements from service teams and performed cloud configuration and access changes under a policy of limiting direct administrator access; also handled backup and restore operations."
-      ],
-      "technologies": [
-        "Prisma Cloud",
-        "AWS",
-        "Azure",
-        "Google Cloud",
-        "Windows Server",
-        "Amazon Linux",
-        "Terraform (vendor-generated onboarding code; targeted edits)",
-        "IAM / cloud access onboarding"
-      ],
-      "scope_note": "This is cloud posture and infrastructure operations experience; it should not be presented as dedicated SOC or SIEM incident response. The additional AWS governance and Lucidscale items were documented in the previous portfolio context, but are not detailed in the nine skill sheets.",
-      "additional_context_from_prior_portfolio": [
-        "Worked within an established AWS Organizations OU/SCP and CloudFormation StackSets governance model. The candidate operated account placement and investigated policy-related support issues; did not author the existing SCPs.",
-        "Used Lucidscale for infrastructure visualization and configuration assessment.",
-        "Handled technical inquiries and customer-facing support."
-      ],
-      "terraform_scope": "Professional use consisted of testing, reviewing, troubleshooting and making targeted corrections to Prisma Cloud vendor-generated Terraform used for customer onboarding. This included provider-version fixes and extracting Azure custom-role permissions into a JSON definition. Customers normally executed or applied the onboarding steps in their own environments. Independently building full Terraform modules and CI/CD pipelines is demonstrated through personal projects, not this assignment.",
-      "alert_triage_examples": [
-        "Investigated password-policy findings, such as minimum length and password reuse restrictions. When a customer reported that an alert persisted after a change, checked the actual setting and explained that the finding still applied.",
-        "Investigated onboarding access errors to determine whether Prisma Cloud could see the expected environment and whether the application had the required permissions; warned when necessary permissions had been removed.",
-        "For network findings such as use of a default VPC or overly broad internet routing, checked the affected resource and cited its resource ID when explaining why a reported fix had not resolved the finding."
-      ],
-      "aws_governance_scope": {
-        "operating_model": "Large numbers of AWS accounts were governed through an established audit-target OU and pre-existing SCPs. Moving an account into the OU brought it under those controls; an existing OU-targeted CloudFormation StackSet distributed the Prisma Cloud integration IAM role.",
-        "personal_contribution": [
-          "Moved applicable accounts into the audit OU as part of onboarding.",
-          "Investigated customer reports of blocked actions and identified when an existing SCP caused the restriction.",
-          "Handled exceptions for accounts that could not be placed in the standard OU."
-        ],
-        "ownership_limit": "The SCP policies and StackSet deployment mechanism already existed when the candidate joined the team. Do not claim that the candidate designed or authored the SCPs, StackSet template or policy standard."
-      },
-      "environment_scale": {
-        "aws": "Thousands of accounts across the audit environment",
-        "azure": "Hundreds of Azure environments in scope (candidate estimate)",
-        "google_cloud": "Dozens of Google Cloud environments in scope (candidate estimate)",
-        "scope_note": "These are approximate total audit-estate figures, not a claim that the candidate individually onboarded every account."
-      },
-      "prisma_onboarding_verification": [
-        "After moving an AWS account into the applicable OU, checked that the OU-targeted StackSet deployed successfully.",
-        "Confirmed that Prisma Cloud recognized the account, then applied account, user and default alert settings.",
-        "Investigated failures and arranged a later retry when needed."
-      ],
-      "reporting_and_automation": {
-        "cadence": "Monthly",
-        "inputs": [
-          "Prisma Cloud export of alert/remediation status",
-          "Cloud account inventory/register"
-        ],
-        "output": "Approximately 20 separate group-company reports each month, generated through to file output by the candidate-authored Excel VBA macro.",
-        "personal_contribution": "Built the VBA macro to import Prisma Cloud alert-status exports and the account register, reconcile and aggregate the data, and generate the company-specific monthly report files.",
-        "observed_effort": "Approximately 1–2 person-days including review and checks after automation.",
-        "baseline_note": "The candidate estimates that a fully manual process might take 1–2 weeks, but this was not a measured before/after baseline; do not quote a percentage or guaranteed time saving."
-      }
     }
   ],
   "skills_by_context": {
@@ -673,7 +699,11 @@
     "For AWS SAA, state only that the candidate passed the exam. Do not describe it as a currently active certification or make claims about current validity.",
     "For broad recruiter questions about strengths or fit, lead with cloud infrastructure, AWS migration and multi-cloud operations. Explain network experience as a differentiator for cloud connectivity, not the candidate’s desired primary on-premises role.",
     "The candidate prefers remote-friendly cloud-focused roles, but has not specified a remote-only requirement or a precise onsite schedule. Do not invent one.",
-    "Never end an answer with a generic referral such as “see the full portfolio for details”. The context already contains specific work and project examples; use a relevant example in the answer instead."
+    "Never end an answer with a generic referral such as “see the full portfolio for details”. The context already contains specific work and project examples; use a relevant example in the answer instead.",
+    "When asked for career history, list the Kyndryl assignment first, CAC second and Kintetsu Information Systems third. Mention Kyndryl technical inquiries as a distinct responsibility, not just Prisma Cloud audit work.",
+    "Kyndryl technical support was a substantial separate responsibility: emphasize standardized cloud platform enablement, requirements clarification, approvals and authorized operations, not only security-alert triage.",
+    "The private-server mail inquiry involved Amazon SES SMTP, not SNS. Do not claim that external delivery was fixed or state an unverified certificate/domain root cause.",
+    "At Kyndryl the candidate personally handled about 60 assigned tickets per month, normally closed about 40–50 in-month and carried roughly 10 forward; these are estimates, not team totals or an SLA metric."
   ],
   "recruiter_faq": [
     {
@@ -699,6 +729,10 @@
     {
       "question": "What is Itsuki’s main professional strength?",
       "answer": "The main strength is cloud infrastructure delivery and operations, supported by hybrid networking expertise. In a CAC AWS migration, the candidate built about 20 application/database servers across five environments and traced a failed initial connection to an AS-number discrepancy in network design documents. In a later multi-cloud audit assignment, the candidate supported Prisma Cloud onboarding at large estate scale and built a VBA workflow to generate about 20 company reports monthly. Independently authored Terraform/CI/CD work is represented as personal projects."
+    },
+    {
+      "question": "Did Itsuki work in technical support at Kyndryl?",
+      "answer": "Yes. In a large, tightly governed cloud estate, Itsuki personally handled roughly 60 technical-support/non-standard tickets a month, typically closing 40–50 within the month while continuing work on about 10. The role involved requirements clarification, configuration and connectivity troubleshooting, approved changes, and coordinated restores with AMI/snapshot and post-restore security-monitoring updates, alongside Prisma Cloud audit work."
     }
   ],
   "project_content_policy": "Project summaries below are personal work. The available app.py reads only this JSON, so it cannot rely on current GitHub README content until the application explicitly retrieves and supplies it."
