@@ -1,0 +1,80 @@
+name: Sync Project READMEs
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: eu-west-2
+  OWNER: itsuki-kawamura-dev
+  PORTFOLIO_BUCKET: ${{ vars.PORTFOLIO_BUCKET }}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ secrets.IAM_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Sync project READMEs to S3
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          repos=(
+            "terraform-aws-private-ec2-ssm"
+            "terraform-aws-cloudwatch-alarm-sns"
+            "terraform-aws-github-actions-oidc-ci"
+            "terraform-aws-ansible-docker-alb"
+            "terraform-azure-private-vm"
+            "terraform-aws-windows-maintenance-automation"
+            "terraform-aws-ai-portfolio-assistant"
+          )
+
+          mkdir -p /tmp/portfolio-projects
+
+          for repo in "${repos[@]}"; do
+
+            echo "Syncing ${repo}..."
+
+            raw_url="https://raw.githubusercontent.com/${OWNER}/${repo}/main/README.md"
+            repo_url="https://github.com/${OWNER}/${repo}"
+
+            output="/tmp/portfolio-projects/${repo}.md"
+
+            {
+              echo "# Project Source"
+              echo
+              echo "Repository: ${repo_url}"
+              echo "Repository Name: ${repo}"
+              echo
+              echo "---"
+              echo
+            } > "${output}"
+
+            curl \
+              --fail \
+              --silent \
+              --show-error \
+              --location \
+              "${raw_url}" \
+              >> "${output}"
+
+            aws s3 cp \
+              "${output}" \
+              "s3://${PORTFOLIO_BUCKET}/projects/${repo}.md" \
+              --content-type "text/markdown"
+          done

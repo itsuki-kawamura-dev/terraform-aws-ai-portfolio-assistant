@@ -147,9 +147,6 @@ The following paths were tested during development:
 | Gemini rate-limit handling | Controlled `503` response observed |
 | Terraform deployment through GitHub Actions | Passed |
 
-Recent Terraform CI run:
-
-https://github.com/itsuki-kawamura-dev/terraform-aws-ai-portfolio-assistant/actions/runs/36308909020
 
 ## CI/CD
 
