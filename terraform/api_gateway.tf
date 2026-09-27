@@ -2,6 +2,20 @@ resource "aws_apigatewayv2_api" "portfolio_api" {
   name          = "${var.project_name}-api"
   protocol_type = "HTTP"
 
+  cors_configuration {
+    allow_origins = [
+      "https://${aws_cloudfront_distribution.frontend.domain_name}"
+    ]
+
+    allow_methods = [
+      "POST"
+    ]
+
+    allow_headers = [
+      "content-type"
+    ]
+  }
+
   tags = {
     Project = var.project_name
   }
