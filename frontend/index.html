@@ -1,83 +1,474 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Itsuki's Portfolio Assistant</title>
+  <title>Ask Itsuki's Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: #f6f8fa;
+      color: #1f2328;
+    }
+
+    .container {
+      width: min(760px, 92%);
+      margin: 60px auto;
+    }
+
+    .header {
+      margin-bottom: 28px;
+    }
+
+    .header h1 {
+      margin-bottom: 8px;
+      font-size: 32px;
+    }
+
+    .header p {
+      color: #656d76;
+      line-height: 1.6;
+    }
+
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .suggestion {
+      border: 1px solid #d0d7de;
+      background: white;
+      border-radius: 20px;
+      padding: 8px 14px;
+      cursor: pointer;
+    }
+
+    .suggestion:hover {
+      background: #f3f4f6;
+    }
+
+    .chat {
+      min-height: 260px;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      margin: 18px 0;
+    }
+
+    .label {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #656d76;
+    }
+
+    .bubble {
+      padding: 14px 16px;
+      border-radius: 12px;
+      line-height: 1.6;
+      .user .bubble {
+  background: #ddf4ff;
+  white-space: pre-wrap;
+}
+
+.assistant .bubble {
+  background: white;
+  border: 1px solid #d0d7de;
+}
+    }
+
+    .user .bubble {
+      background: #ddf4ff;
+    }
+
+    .assistant .bubble {
+      background: white;
+      border: 1px solid #d0d7de;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 10px;
+      position: sticky;
+      bottom: 20px;
+    }
+
+    #question {
+      flex: 1;
+      padding: 13px 15px;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    #question:focus {
+      outline: 2px solid #0969da;
+      outline-offset: 1px;
+    }
+
+    #askButton {
+      border: none;
+      border-radius: 8px;
+      padding: 0 20px;
+      background: #1f883d;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #askButton:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .status {
+      color: #656d76;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      color: #656d76;
+      font-size: 13px;
+    }
+    .bubble p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.bubble ul,
+.bubble ol {
+  margin: 8px 0;
+  padding-left: 24px;
+}
+
+.bubble li {
+  margin: 4px 0;
+}
+
+.bubble code {
+  background: #f6f8fa;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.bubble a {
+  color: #0969da;
+  text-decoration: none;
+}
+
+.bubble a:hover {
+  text-decoration: underline;
+}
+
+.bubble strong {
+  font-weight: 600;
+}
+  </style>
 </head>
 
 <body>
-  <h1>Ask Itsuki's Portfolio</h1>
 
-  <p>
-    Ask about cloud infrastructure, networking,
-    Terraform, automation, or projects.
-  </p>
+<div class="container">
 
-  <input
-    id="question"
-    type="text"
-    placeholder="Does Itsuki have Terraform experience?"
-    size="60"
-  >
+  <div class="header">
+    <h1>Ask Itsuki's Portfolio</h1>
 
-  <button onclick="askQuestion()">Ask</button>
+    <p>
+      Ask about my cloud infrastructure, networking,
+      Terraform, automation, and technical projects.
+    </p>
+  </div>
 
-  <p id="status"></p>
-  <div id="answer"></div>
 
-  <script>
-    const API_ENDPOINT =
-      "https://6w61tsy5a9.execute-api.eu-west-2.amazonaws.com/ask";
+  <div class="suggestions">
 
-    async function askQuestion() {
-      const question =
-        document.getElementById("question").value.trim();
+    <button
+      class="suggestion"
+      onclick="useSuggestion(
+        'What AWS experience does Itsuki have?'
+      )">
+      AWS experience
+    </button>
 
-      const status =
-        document.getElementById("status");
+    <button
+      class="suggestion"
+      onclick="useSuggestion(
+        'Does Itsuki have Terraform experience?'
+      )">
+      Terraform
+    </button>
 
-      const answer =
-        document.getElementById("answer");
+    <button
+      class="suggestion"
+      onclick="useSuggestion(
+        'Which project best demonstrates automation?'
+      )">
+      Automation
+    </button>
 
-      if (!question) {
-        status.textContent = "Please enter a question.";
-        return;
-      }
+  </div>
 
-      status.textContent = "Thinking...";
-      answer.textContent = "";
 
-      try {
-        const response = await fetch(API_ENDPOINT, {
+  <div id="chat" class="chat">
+
+    <div class="message assistant">
+      <div class="label">
+        Portfolio Assistant
+      </div>
+
+      <div class="bubble">
+Hi! Ask me anything about Itsuki's infrastructure experience and projects.
+      </div>
+    </div>
+
+  </div>
+
+
+  <div id="status" class="status"></div>
+
+
+  <div class="input-area">
+
+    <input
+      id="question"
+      type="text"
+      maxlength="500"
+      placeholder="Ask about Itsuki's experience..."
+    >
+
+    <button
+      id="askButton"
+      onclick="askQuestion()">
+      Ask
+    </button>
+
+  </div>
+
+
+  <div class="footer">
+    AI answers are generated from portfolio information.
+  </div>
+
+</div>
+
+
+<script>
+
+const API_ENDPOINT =
+  "https://6w61tsy5a9.execute-api.eu-west-2.amazonaws.com/ask";
+
+
+function useSuggestion(question) {
+
+  document.getElementById("question").value = question;
+
+  askQuestion();
+}
+
+
+function addMessage(role, text) {
+
+  const chat =
+    document.getElementById("chat");
+
+  const message =
+    document.createElement("div");
+
+  message.className =
+    `message ${role}`;
+
+  const label =
+    document.createElement("div");
+
+  label.className = "label";
+
+  label.textContent =
+    role === "user"
+      ? "You"
+      : "Portfolio Assistant";
+
+
+  const bubble =
+    document.createElement("div");
+
+  bubble.className = "bubble";
+
+  if (role === "assistant") {
+
+    /*
+      Generated assistant output is sanitized before rendering.
+    */
+    bubble.innerHTML =
+      DOMPurify.sanitize(text);
+
+  } else {
+
+    /*
+      User input is always plain text.
+    */
+    bubble.textContent = text;
+  }
+
+
+  message.appendChild(label);
+  message.appendChild(bubble);
+
+  chat.appendChild(message);
+
+  message.scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
+async function askQuestion() {
+
+  const input =
+    document.getElementById("question");
+
+  const button =
+    document.getElementById("askButton");
+
+  const status =
+    document.getElementById("status");
+
+
+  const question =
+    input.value.trim();
+
+
+  if (!question) {
+    status.textContent =
+      "Please enter a question.";
+
+    return;
+  }
+
+
+  if (question.length > 500) {
+    status.textContent =
+      "Please keep your question under 500 characters.";
+
+    return;
+  }
+
+
+  addMessage(
+    "user",
+    question
+  );
+
+
+  input.value = "";
+
+  button.disabled = true;
+
+  status.textContent =
+    "Portfolio Assistant is thinking...";
+
+
+  try {
+
+    const response =
+      await fetch(
+        API_ENDPOINT,
+        {
           method: "POST",
 
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type":
+              "application/json"
           },
 
           body: JSON.stringify({
             question: question
           })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(
-            data.error || "Request failed"
-          );
         }
+      );
 
-        answer.textContent = data.answer;
-        status.textContent = "";
 
-      } catch (error) {
-        status.textContent =
-          "Sorry, the assistant is temporarily unavailable.";
+    const data =
+      await response.json();
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        data.error ||
+        "Request failed"
+      );
+    }
+
+
+    addMessage(
+      "assistant",
+      data.answer
+    );
+
+
+    status.textContent = "";
+
+
+  } catch (error) {
+
+    addMessage(
+      "assistant",
+      "Sorry, I couldn't answer that question right now. Please try again."
+    );
+
+    status.textContent = "";
+
+  } finally {
+
+    button.disabled = false;
+
+    input.focus();
+  }
+}
+
+
+/*
+  Allow Enter to submit
+*/
+
+document
+  .getElementById("question")
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (event.key === "Enter") {
+        askQuestion();
       }
     }
-  </script>
+  );
+
+</script>
+
 </body>
 </html>
