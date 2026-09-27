@@ -414,11 +414,20 @@ async function askQuestion() {
         }
       );
 
-
-    const data =
+          const data =
       await response.json();
 
 
+
+      if (response.status === 429) {
+  addMessage(
+    "assistant",
+    "Too many requests. Please wait a moment and try again."
+  );
+
+  status.textContent = "";
+  return;
+}
     if (!response.ok) {
 
       throw new Error(
