@@ -142,6 +142,79 @@
       "details_as_of": "2026-09-27 portfolio context; check the repository before claiming current state"
     },
     {
+      "name": "Azure Container Apps Event-Driven Worker",
+      "repository": "terraform-azure-container-apps-cicd",
+      "category": [
+        "Azure",
+        "Terraform",
+        "Container Apps",
+        "Event-Driven Architecture",
+        "GitHub Actions"
+      ],
+      "summary": "Event-driven API and worker architecture on Azure using Container Apps, Service Bus, Blob Storage, Managed Identity, KEDA autoscaling and GitHub Actions.",
+      "architecture": [
+        "Public API Azure Container App",
+        "Azure Service Bus queue",
+        "KEDA-based worker autoscaling",
+        "Worker Azure Container App with scale-to-zero",
+        "Azure Blob Storage results container",
+        "Azure Container Registry",
+        "Azure Log Analytics Workspace",
+        "User-assigned Managed Identities with Azure RBAC"
+      ],
+      "implementation": [
+        "The API accepts POST /jobs requests and sends JSON messages to an Azure Service Bus queue.",
+        "The worker receives Service Bus messages, processes them and writes JSON results to a private Blob Storage container.",
+        "The API and worker authenticate to Azure services with user-assigned Managed Identities instead of application connection strings.",
+        "RBAC grants the API Azure Service Bus Data Sender and AcrPull permissions.",
+        "RBAC grants the worker Azure Service Bus Data Receiver, Storage Blob Data Contributor and AcrPull permissions.",
+        "The worker uses a KEDA Service Bus scale rule with min_replicas = 0 and max_replicas = 3.",
+        "The KEDA scaler authenticates to Service Bus using the worker Managed Identity.",
+        "The Container Apps Environment is connected to Log Analytics for application stdout/stderr and platform logs.",
+        "Terraform manages infrastructure configuration while GitHub Actions manages application image deployment.",
+        "Terraform ignores Container App image drift so GitHub Actions can deploy commit-SHA-tagged images independently."
+      ],
+      "ci_cd": [
+        "A bootstrap GitHub Actions workflow creates ACR first, builds and pushes API/worker images on a GitHub-hosted runner, then applies the remaining Terraform infrastructure.",
+        "A normal deployment workflow builds API and worker images in parallel, tags them with the Git commit SHA, pushes them to ACR, updates both Container Apps and verifies the deployed image tags.",
+        "GitHub Actions authenticates to Azure with OIDC rather than a long-lived Azure client secret.",
+        "A separate Terraform destroy workflow is used for teardown."
+      ],
+      "failure_handling": [
+        "The worker completes a Service Bus message only after successful processing.",
+        "Failed messages can be abandoned for retry.",
+        "Repeated failures are explicitly moved to the Dead-letter Queue with a reason and error description."
+      ],
+      "validation": [
+        "Confirmed API to Service Bus message delivery.",
+        "Confirmed worker consumption and Blob Storage result creation.",
+        "Confirmed JSON message serialization instead of Python dict string representation.",
+        "Confirmed KEDA scale-to-zero with zero worker replicas while the queue is empty.",
+        "Confirmed scale-out from 0 to 2 worker replicas after sending multiple queued messages, then scale-in back to 0.",
+        "Confirmed a deliberately failed message was moved to the Service Bus Dead-letter Queue.",
+        "Confirmed the full environment bootstrap workflow can rebuild the environment from scratch."
+      ],
+      "demonstrates": [
+        "Azure Container Apps",
+        "Azure Service Bus",
+        "KEDA autoscaling",
+        "Scale-to-zero",
+        "Managed Identity",
+        "Azure RBAC",
+        "Blob Storage",
+        "Azure Container Registry",
+        "Log Analytics",
+        "Terraform",
+        "Docker",
+        "GitHub Actions",
+        "OIDC",
+        "Retry and Dead-letter Queue handling",
+        "Infrastructure and application deployment separation"
+      ],
+      "experience_type": "personal_portfolio_project",
+      "details_as_of": "2026-10-05 portfolio context; check the repository before claiming current state"
+    },
+    {
       "name": "AWS Private Application Infrastructure",
       "repository": "terraform-aws-ansible-docker-alb",
       "category": [
@@ -361,7 +434,9 @@
       "Automation",
       "Containers",
       "DevOps practices",
-      "SRE practices"
+      "SRE practices",
+      "Azure PaaS",
+      "Event-driven architecture"
     ],
     "positioning": "Lead with cloud infrastructure and multi-cloud operations. Use networking and hybrid AWS migration as evidence of technical depth, and distinguish professional CloudFormation/VBA/vendor-Terraform work from independent Terraform and CI/CD projects."
   },
@@ -384,10 +459,11 @@
     "Has Itsuki worked with hybrid cloud connectivity?",
     "How does Itsuki approach infrastructure troubleshooting?",
     "Which projects demonstrate security best practices?",
-    "What is Itsuki currently learning?"
+    "What is Itsuki currently learning?",
+    "What Azure Container Apps and event-driven architecture experience does Itsuki have?"
   ],
   "schema_version": "2.0",
-  "updated_at": "2026-09-27",
+  "updated_at": "2026-10-05",
   "purpose": "Recruiter-facing context. Professional history and personal portfolio projects have different evidence levels. The current Lambda reads this JSON from S3; it does not fetch repository READMEs.",
   "professional_experience": [
     {
@@ -677,7 +753,12 @@
       "Independently built Terraform infrastructure projects",
       "GitHub Actions and CI/CD projects",
       "Ansible and Docker in a personal project",
-      "Kubernetes learning"
+      "Kubernetes learning",
+      "Azure Container Apps, Service Bus and KEDA event-driven scaling in a personal project",
+      "Azure Managed Identity and RBAC for passwordless service-to-service authentication",
+      "Docker image build and Azure Container Registry deployment through GitHub Actions",
+      "Retry and Dead-letter Queue handling with Azure Service Bus",
+      "Log Analytics integration for Container Apps logs"
     ]
   },
   "answering_rules": [
