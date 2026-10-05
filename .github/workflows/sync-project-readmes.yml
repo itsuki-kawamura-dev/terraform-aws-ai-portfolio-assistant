@@ -35,22 +35,25 @@ jobs:
           set -euo pipefail
 
           repos=(
-            "terraform-aws-private-ec2-ssm"
-            "terraform-aws-cloudwatch-alarm-sns"
-            "terraform-aws-github-actions-oidc-ci"
-            "terraform-aws-ansible-docker-alb"
-            "terraform-azure-private-vm"
-            "terraform-aws-windows-maintenance-automation"
-            "terraform-aws-ai-portfolio-assistant"
+            "terraform-aws-private-ec2-ssm:main"
+            "terraform-aws-cloudwatch-alarm-sns:main"
+            "terraform-aws-github-actions-oidc-ci:main"
+            "terraform-aws-ansible-docker-alb:main"
+            "terraform-azure-private-vm:main"
+            "terraform-aws-windows-maintenance-automation:main"
+            "terraform-aws-ai-portfolio-assistant:main"
+            "terraform-azure-container-apps-cicd:master"
           )
 
           mkdir -p /tmp/portfolio-projects
 
-          for repo in "${repos[@]}"; do
+          for entry in "${repos[@]}"; do
+            repo="${entry%%:*}"
+            branch="${entry##*:}"
 
-            echo "Syncing ${repo}..."
+            echo "Syncing ${repo} from ${branch}..."
 
-            raw_url="https://raw.githubusercontent.com/${OWNER}/${repo}/main/README.md"
+            raw_url="https://raw.githubusercontent.com/${OWNER}/${repo}/${branch}/README.md"
             repo_url="https://github.com/${OWNER}/${repo}"
 
             output="/tmp/portfolio-projects/${repo}.md"
@@ -60,6 +63,7 @@ jobs:
               echo
               echo "Repository: ${repo_url}"
               echo "Repository Name: ${repo}"
+              echo "Branch: ${branch}"
               echo
               echo "---"
               echo
